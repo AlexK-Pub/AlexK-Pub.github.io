@@ -1,0 +1,17 @@
+{%- comment -%} One project card. Usage: {% include card.html item=project %} {%- endcomment -%}
+{%- assign it = include.item -%}
+<li class="card">
+  <div class="card-media{% if it.paper %} card-media--paper{% endif %}">
+    {%- if it.image_dark %}
+    <img class="only-light{% if it.fit == 'contain' %} contain{% endif %}" src="{{ it.image | relative_url }}" alt="{{ it.alt | escape }}" loading="lazy" decoding="async">
+    <img class="only-dark{% if it.fit == 'contain' %} contain{% endif %}" src="{{ it.image_dark | relative_url }}" alt="{{ it.alt | escape }}" loading="lazy" decoding="async">
+    {%- else %}
+    <img{% if it.fit == 'contain' %} class="contain"{% endif %} src="{{ it.image | relative_url }}" alt="{{ it.alt | escape }}" loading="lazy" decoding="async">
+    {%- endif %}
+  </div>
+  <div class="card-body">
+    <h3 class="card-title"><a href="{{ it.url | relative_url }}">{{ it.title }}</a></h3>
+    <p class="card-text">{{ it.text }}</p>
+    <p class="card-meta">{{ it.meta }}</p>
+  </div>
+</li>

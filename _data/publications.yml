@@ -1,0 +1,101 @@
+# One entry per paper, newest first. `project` is the path of its page on this site (optional).
+- key: kyuroson2026tide
+  title: "TIDE: Asymmetric Neural Circuits for Stabilized Temporal Inhibitory-Excitatory Dynamics"
+  authors: ["Alexander Kyuroson", "Denis Kleyko", "Marcus Liwicki"]
+  venue: "40th Conference on Neural Information Processing Systems (NeurIPS)"
+  year: 2026
+  type: Conference paper
+  badge: NeurIPS 2026
+  selected: true
+  project: /tide/
+  arxiv: "2605.19403"
+  summary: >-
+    A recurrent architecture with separate excitatory and inhibitory populations, built on the
+    Continuous Thought Machine: Dale-constrained Wilson-Cowan dynamics, lateral inhibition,
+    and a surprise-gated memory.
+  bibtex: |
+    @inproceedings{
+    anonymous2026tide,
+    title={{TIDE}: Asymmetric Neural Circuits for Stabilized Temporal Inhibitory-Excitatory Dynamics},
+    author={Anonymous},
+    booktitle={The Fortieth Annual Conference on Neural Information Processing Systems},
+    year={2026},
+    url={https://openreview.net/forum?id=dwcrK8NHpm}
+    }
+
+- key: kyuroson2024orbit
+  title: "Towards fully autonomous orbit management for low-earth orbit satellites based on neuro-evolutionary algorithms and deep reinforcement learning"
+  authors: ["Alexander Kyuroson", "Avijit Banerjee", "Nektarios Aristeidis Tafanidis", "Sumeet Satpute", "George Nikolakopoulos"]
+  venue: "European Journal of Control, vol. 80, 101052"
+  year: 2024
+  type: Journal article
+  selected: true
+  project: /orbit-management/
+  doi: "10.1016/j.ejcon.2024.101052"
+  open_access: true
+  bibtex: |
+    @article{kyuroson2024orbit,
+      title   = {Towards fully autonomous orbit management for low-earth orbit satellites based on neuro-evolutionary algorithms and deep reinforcement learning},
+      author  = {Kyuroson, Alexander and Banerjee, Avijit and Tafanidis, Nektarios Aristeidis and Satpute, Sumeet and Nikolakopoulos, George},
+      journal = {European Journal of Control},
+      volume  = {80},
+      pages   = {101052},
+      year    = {2024},
+      doi     = {10.1016/j.ejcon.2024.101052}
+    }
+- key: kyuroson2023powerlines
+  title: "Autonomous Point Cloud Segmentation for Power Lines Inspection in Smart Grid"
+  authors: ["Alexander Kyuroson", "Anton Koval", "George Nikolakopoulos"]
+  venue: "22nd IFAC World Congress. IFAC-PapersOnLine, vol. 56, no. 2, pp. 11754–11761"
+  year: 2023
+  type: Conference paper
+  selected: true
+  project: /powerline-segmentation/
+  arxiv: "2308.07283"
+  doi: "10.1016/j.ifacol.2023.10.562"
+  bibtex: |
+    @article{kyuroson2023powerlines,
+      title   = {Autonomous Point Cloud Segmentation for Power Lines Inspection in Smart Grid},
+      author  = {Kyuroson, Alexander and Koval, Anton and Nikolakopoulos, George},
+      journal = {IFAC-PapersOnLine},
+      volume  = {56},
+      number  = {2},
+      pages   = {11754--11761},
+      year    = {2023},
+      doi     = {10.1016/j.ifacol.2023.10.562}
+    }
+- key: kyuroson2023smoke
+  title: "Efficient Real-time Smoke Filtration with 3D LiDAR for Search and Rescue with Autonomous Heterogeneous Robotic Systems"
+  authors: ["Alexander Kyuroson", "Anton Koval", "George Nikolakopoulos"]
+  venue: "IECON 2023 – 49th Annual Conference of the IEEE Industrial Electronics Society"
+  year: 2023
+  type: Conference paper
+  project: /smoke-filtration/
+  arxiv: "2308.07264"
+  doi: "10.1109/IECON51785.2023.10312303"
+  bibtex: |
+    @inproceedings{kyuroson2023smoke,
+      title     = {Efficient Real-time Smoke Filtration with {3D} {LiDAR} for Search and Rescue with Autonomous Heterogeneous Robotic Systems},
+      author    = {Kyuroson, Alexander and Koval, Anton and Nikolakopoulos, George},
+      booktitle = {IECON 2023 -- 49th Annual Conference of the IEEE Industrial Electronics Society},
+      year      = {2023},
+      doi       = {10.1109/IECON51785.2023.10312303}
+    }
+- key: kyuroson2023subt
+  title: "Multimodal Dataset from Harsh Sub-Terranean Environment with Aerosol Particles for Frontier Exploration"
+  authors: ["Alexander Kyuroson", "Niklas Dahlquist", "Nikolaos Stathoulopoulos", "Vignesh Kottayam Viswanathan", "Anton Koval", "George Nikolakopoulos"]
+  venue: "31st Mediterranean Conference on Control and Automation (MED), pp. 716–721"
+  year: 2023
+  type: Conference paper
+  project: /subt-dataset/
+  arxiv: "2304.14520"
+  doi: "10.1109/MED59994.2023.10185906"
+  bibtex: |
+    @inproceedings{kyuroson2023subt,
+      title     = {Multimodal Dataset from Harsh Sub-Terranean Environment with Aerosol Particles for Frontier Exploration},
+      author    = {Kyuroson, Alexander and Dahlquist, Niklas and Stathoulopoulos, Nikolaos and Viswanathan, Vignesh Kottayam and Koval, Anton and Nikolakopoulos, George},
+      booktitle = {31st Mediterranean Conference on Control and Automation (MED)},
+      pages     = {716--721},
+      year      = {2023},
+      doi       = {10.1109/MED59994.2023.10185906}
+    }

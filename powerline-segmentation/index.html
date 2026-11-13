@@ -1,0 +1,84 @@
+---
+layout: project
+title: "Autonomous Point Cloud Segmentation for Power Lines Inspection in Smart Grid"
+description: >-
+  An unsupervised pipeline that extracts individual power lines and the surrounding vegetation corridor
+  from a drone's LiDAR point cloud. 22nd IFAC World Congress, 2023.
+og_image: /assets/img/powerline/inspection-flight.webp
+venue: "IFAC World Congress 2023"
+authors:
+  - {name: "Alexander Kyuroson", url: "/"}
+  - {name: "Anton Koval"}
+  - {name: "George Nikolakopoulos"}
+affiliations:
+  - {name: "Robotics and Artificial Intelligence Group, Luleå University of Technology"}
+actions:
+  - {label: "Paper", icon: "paper", url: "https://arxiv.org/pdf/2308.07283"}
+  - {label: "arXiv", icon: "book", url: "https://arxiv.org/abs/2308.07283"}
+  - {label: "alphaXiv", icon: "chat", url: "https://www.alphaxiv.org/abs/2308.07283"}
+  - {label: "Published version", icon: "link", url: "https://doi.org/10.1016/j.ifacol.2023.10.562"}
+  - {label: "Cite", icon: "quote", url: "#citation"}
+sections:
+  - {id: "abstract", label: "Abstract"}
+  - {id: "method", label: "Method"}
+  - {id: "results", label: "Results"}
+  - {id: "citation", label: "Citation"}
+---
+<div class="wide">
+  {% include figure.html src="/assets/img/powerline/inspection-flight.webp" plate="photo" w="1400" h="795" alt="A drone flying beside three power lines above a snow-covered forest, with the flight direction marked." caption="Autonomous inspection of a power line with a UAV." %}
+</div>
+
+<section class="section section--first" id="abstract" aria-labelledby="abstract-h">
+  <h2 id="abstract-h">Abstract</h2>
+  <p class="abstract">LiDAR is currently one of the most utilized sensors to effectively monitor the status of power lines and facilitate the inspection of remote power distribution networks and related infrastructures. To ensure the safe operation of the smart grid, various remote data acquisition strategies, such as Airborne Laser Scanning (ALS), Mobile Laser Scanning (MLS), and Terrestrial Laser Scanning (TSL) have been leveraged to allow continuous monitoring of regional power networks, which are typically surrounded by dense vegetation. In this article, an unsupervised Machine Learning (ML) framework is proposed, to detect, extract and analyze the characteristics of power lines of both high and low voltage, as well as the surrounding vegetation in a Power Line Corridor (PLC) solely from LiDAR data. Initially, the proposed approach eliminates the ground points from higher elevation points based on statistical analysis that applies density criteria and histogram thresholding. After denoising and transforming of the remaining candidate points by applying Principle Component Analysis (PCA) and Kd-tree, power line segmentation is achieved by utilizing a two-stage DBSCAN clustering to identify each power line individually. Finally, all high elevation points in the PLC are identified based on their distance to the newly segmented power lines. Conducted experiments illustrate that the proposed framework is an agnostic method that can efficiently detect the power lines and perform PLC-based hazard analysis.</p>
+</section>
+
+<section class="section" id="method" aria-labelledby="method-h">
+  <h2 id="method-h">Method</h2>
+  <p>The pipeline needs no labels and no camera. It works on the LiDAR point cloud in four stages.</p>
+  <ol>
+    <li>Ground points are separated from higher points with density criteria and histogram thresholding.</li>
+    <li>The remaining candidates are denoised and transformed with PCA and a kd-tree, which keeps the points that lie along lines.</li>
+    <li>A two-stage DBSCAN clustering separates the individual conductors, and a catenary is fitted to each one.</li>
+    <li>All high points in the corridor are then identified by their distance to the segmented lines, which is the basis for the hazard analysis.</li>
+  </ol>
+  <div class="wide">
+    {% include figure.html dense="1" light="/assets/img/powerline/pipeline.webp" dark="/assets/img/powerline/pipeline-dark.webp" w="1800" h="318" alt="Flow chart. The point cloud is split into high and low elevation points. High points pass through a kd-tree, eigenvectors and linear features to give the power line points, which are transformed, segmented and fitted with a catenary to give the power line model. The model and the low points feed a second kd-tree that extracts the corridor." caption="The pipeline for extracting the power lines and the power line corridor (PLC)." %}
+  </div>
+  <div class="wide">
+    <div class="fig-row">
+      {% include figure.html src="/assets/img/powerline/platform.webp" plate="photo" w="1055" h="645" alt="A quadrotor on snow with an onboard computer on top and a 3D LiDAR mounted underneath." caption="The aerial platform: onboard computer and 3D LiDAR." %}
+      {% include figure.html src="/assets/img/powerline/point-cloud.webp" plate="photo" w="1400" h="871" alt="A colored 3D point cloud of a forest with a cleared corridor running through it." caption="3D point cloud map of the inspected area." %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results" aria-labelledby="results-h">
+  <h2 id="results-h">Results</h2>
+  <div class="wide">
+    {% include figure.html light="/assets/img/powerline/extraction.webp" dark="/assets/img/powerline/extraction-dark.webp" w="1600" h="389" alt="Two 3D plots. Left: a thin band of points along the power lines. Right: the same lines with the trees of the surrounding corridor." caption="Left: power lines extracted from the LiDAR data. Right: the extracted power line corridor." %}
+  </div>
+  <div class="wide">
+    {% include figure.html light="/assets/img/powerline/catenary-model.webp" dark="/assets/img/powerline/catenary-model-dark.webp" w="1400" h="403" alt="Points of one conductor between two poles with a fitted catenary curve and its lowest point marked." caption="Power line modeling: a catenary fitted to one conductor, with its lowest point." %}
+    {% include figure.html light="/assets/img/powerline/lines-xy.webp" dark="/assets/img/powerline/lines-xy-dark.webp" w="1400" h="412" alt="Top view of the denoised points of three parallel power lines." caption="Power lines projected on the XY-plane." %}
+    {% include figure.html light="/assets/img/powerline/lines-segmented.webp" dark="/assets/img/powerline/lines-segmented-dark.webp" w="1400" h="261" alt="The same top view with the three lines in three colors, one per cluster." caption="Segmented power lines projected on the XY-plane, one color per conductor." %}
+    <p class="fig-note">Extraction, segmentation and modeling of each conductor, used to assess its operational status.</p>
+  </div>
+</section>
+
+<section class="section" id="citation" aria-labelledby="citation-h">
+  <h2 id="citation-h">Citation</h2>
+  <div class="cite-box">
+    <div class="cite-head"><span>BibTeX</span><button class="chip-link" type="button" data-copy="bib">Copy</button></div>
+<pre class="bibtex" tabindex="0"><code id="bib">{% raw %}@article{kyuroson2023powerlines,
+  title   = {Autonomous Point Cloud Segmentation for Power Lines Inspection in Smart Grid},
+  author  = {Kyuroson, Alexander and Koval, Anton and Nikolakopoulos, George},
+  journal = {IFAC-PapersOnLine},
+  volume  = {56},
+  number  = {2},
+  pages   = {11754--11761},
+  year    = {2023},
+  doi     = {10.1016/j.ifacol.2023.10.562}
+}{% endraw %}</code></pre>
+  </div>
+</section>

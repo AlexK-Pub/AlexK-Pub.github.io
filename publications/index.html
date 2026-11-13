@@ -1,0 +1,12 @@
+---
+layout: page
+title: Publications
+description: Papers by Alexander Kyuroson, with links to project pages, preprints and BibTeX.
+---
+<h1>Publications</h1>
+<p>Listed in reverse chronological order. Complete records are maintained on <a href="https://scholar.google.com/citations?user=43Vx7K0AAAAJ">Google Scholar</a> and <a href="https://orcid.org/0009-0007-4859-9955">ORCID</a>.</p>
+<ul class="pubs">
+  {%- for pub in site.data.publications %}
+  {% include pub.html pub=pub summary=true %}
+  {%- endfor %}
+</ul>

@@ -1,0 +1,164 @@
+/* ==========================================================================
+   Project pages (TIDE and the earlier papers)
+   Centered title block, pill buttons, section bar, figures on plates.
+   ========================================================================== */
+
+.project{--accent:var(--e)}
+.project--tide{--accent:var(--i)}
+
+.project-hero{max-width:60rem;margin:0 auto;padding:3rem 1.5rem 1.6rem;text-align:center}
+.project-venue{display:inline-block;margin:0 0 1.1rem;font-weight:700;font-size:.95rem;color:var(--ink);
+  padding:.3rem .8rem;border-radius:999px;background:var(--e-soft)}
+.project--tide .project-venue{background:var(--i-soft)}
+.project-title{font-family:var(--serif);font-weight:600;font-size:clamp(1.75rem,1.1rem + 2.6vw,2.9rem);line-height:1.14;letter-spacing:-.012em;margin:0 auto;max-width:21em}
+.project-title .name{color:var(--accent)}
+.authors{list-style:none;padding:0;margin:1.5rem 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:.2rem 1.6rem;font-size:1.1rem;font-weight:600}
+.authors li{margin:0}
+.authors a{color:var(--ink);text-decoration-color:var(--rule-strong)}
+.authors sup,.affiliations sup{font-size:.7em;font-weight:700;color:var(--ink-2);margin-left:.1em}
+.affiliations{list-style:none;padding:0;margin:.5rem 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:.1rem 1.4rem;color:var(--ink-2);font-size:.95rem}
+.affiliations li{margin:0}
+.affiliations sup{margin:0 .15em 0 0}
+
+.actions{list-style:none;padding:0;margin:1.6rem 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem}
+.actions li{margin:0}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font:inherit;font-weight:700;font-size:.98rem;line-height:1;
+  padding:.72rem 1.15rem;border-radius:999px;border:1.5px solid var(--btn-bg);background:var(--btn-bg);color:var(--btn-ink);text-decoration:none;cursor:pointer}
+.btn svg{width:1.05rem;height:1.05rem;flex:none}
+.btn:hover{background:transparent;color:var(--ink)}
+.btn--ghost{background:transparent;color:var(--ink)}
+.btn--ghost:hover{background:var(--btn-bg);color:var(--btn-ink)}
+.btn[aria-disabled="true"]{background:transparent;border-style:dashed;border-color:var(--btn-off);color:var(--ink-2);cursor:not-allowed}
+.btn[aria-disabled="true"]:hover{background:transparent;color:var(--ink-2)}
+.btn .soon{font-weight:600;font-size:.84rem;padding:.16rem .45rem;border-radius:999px;background:var(--e-soft);color:var(--ink)}
+
+/* section bar */
+.section-bar{position:sticky;top:0;z-index:5;background:var(--bg);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-top:1.4rem}
+.section-bar ul{list-style:none;margin:0 auto;padding:.15rem 1.5rem;max-width:60rem;display:flex;gap:.1rem 1.5rem;justify-content:center;flex-wrap:wrap}
+.section-bar li{margin:0}
+.section-bar a{display:block;padding:.55rem 0;color:var(--ink-2);font-weight:600;font-size:.95rem;text-decoration:none;border-bottom:2px solid transparent}
+.section-bar a:hover{color:var(--ink);border-bottom-color:var(--accent)}
+
+/* sections */
+.section{max-width:var(--measure);margin:0 auto;padding:0 1.5rem}
+.section > h2{margin-top:3.2rem}
+.section--first > h2{margin-top:2.4rem}
+.section p,.section li{color:var(--ink)}
+.abstract{font-family:var(--serif);font-size:1.16rem;line-height:1.68}
+.wide{max-width:var(--wide);margin:1.6rem auto 0;padding:0 1.5rem}
+/* Inside a section the wide column reaches as far as the page allows, so it always matches the wide blocks outside sections. */
+.section .wide{padding:0;max-width:none;width:auto;
+  margin-left:min(0px,calc((var(--measure) - min(var(--wide),100vw)) / 2));
+  margin-right:min(0px,calc((var(--measure) - min(var(--wide),100vw)) / 2))}
+
+/* figures */
+figure{margin:1.6rem 0 0}
+.plate{background:var(--plate);border:1px solid var(--rule);border-radius:8px;padding:clamp(.5rem,1.6vw,1.1rem);overflow:hidden}
+.plate--paper{background:#FFFFFF}
+.plate--bare{padding:0;background:transparent}
+.plate img{width:100%;height:auto;border-radius:3px}
+.plate a{display:block}
+.plate--photo{padding:0;background:#000}
+.plate--video{padding:0}
+.plate video{display:block;width:100%;height:auto;background:#FFFFFF}
+.scroll-hint{display:none;margin:.5rem 0 0;font-size:.88rem;color:var(--ink-2)}
+@media (max-width:46rem){
+  .plate--dense{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .plate--dense img{width:46rem;max-width:none;height:auto}
+  .scroll-hint{display:block}
+}
+figcaption,.fig-note{margin:.55rem 0 0;color:var(--ink-2);font-size:.92rem;line-height:1.5}
+figcaption strong,.fig-note strong{color:var(--ink)}
+.section p.fig-note,.section p.table-note{color:var(--ink-2)}
+
+/* A row of figures. Every figure gets a width in proportion to its aspect ratio (--ar, set by figure.html
+   from w and h), so all plates in the row have exactly one height and the row is flush with both edges. */
+.fig-row{display:flex;gap:.75rem;align-items:flex-start}
+.fig-row + .fig-row{margin-top:1.1rem}
+.fig-row > figure{flex:var(--ar,1) 1 0px;min-width:0;margin:0}
+.fig-row .plate{aspect-ratio:var(--ar,1);display:flex}
+.fig-row .plate > a{flex:1 1 auto;min-width:0;min-height:0;position:relative}
+.fig-row .plate img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.fig-row > figure.fig--stage .plate{aspect-ratio:var(--stage,3)}
+@media (max-width:56rem){.fig-row > figure.fig--stage .plate{aspect-ratio:calc(var(--stage,3) * .66)}}
+@media (max-width:40rem){
+  .fig-row{flex-direction:column}
+  .fig-row > figure{flex:none;width:100%}
+  .fig-row > figure.fig--stage .plate{aspect-ratio:var(--ar,1)}
+}
+
+/* A grid for figures that all have the same shape (the demo clips). */
+.fig-grid{display:grid;gap:1.1rem .75rem;grid-template-columns:repeat(var(--cols,2),minmax(0,1fr))}
+.fig-grid figure{margin:0}
+@media (max-width:40rem){.fig-grid{grid-template-columns:1fr}}
+
+/* TIDE / CTM swap */
+.swap-controls{display:none}
+.swap.is-enhanced .swap-controls{display:inline-flex;border:1.5px solid var(--btn-bg);border-radius:999px;padding:3px;gap:3px;margin-bottom:.8rem}
+.swap-controls button{font:inherit;font-weight:700;font-size:.95rem;line-height:1;padding:.55rem 1.1rem;border-radius:999px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.swap-controls button[aria-pressed="true"]{background:var(--btn-bg);color:var(--btn-ink)}
+.swap-panel + .swap-panel{margin-top:1rem}
+.swap-label{font-family:var(--serif);font-weight:700;font-size:1.05rem;margin:0 0 .4rem}
+.swap.is-enhanced .swap-label{display:none}
+.swap.is-enhanced .swap-panel[hidden]{display:none}
+.swap.is-enhanced .swap-panel + .swap-panel{margin-top:0}
+
+/* equations */
+.eq-card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:1rem 1.1rem;margin-top:1.4rem;overflow-x:auto}
+.eq-grid{display:grid;grid-template-columns:1fr;gap:.55rem;justify-items:start}
+.eq-grid .katex{font-size:1.1em}
+.eq-note{margin:.8rem 0 0;padding-top:.7rem;border-top:1px solid var(--rule);color:var(--ink-2);font-size:.95rem;line-height:1.9}
+
+/* tables */
+.table-wrap{overflow-x:auto;margin-top:1.4rem;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+.table-wrap:focus-visible{outline-offset:0}
+table.data{border-collapse:collapse;width:100%;font-size:.93rem;font-variant-numeric:tabular-nums lining-nums}
+table.data th,table.data td{padding:.5rem .8rem;text-align:right;white-space:nowrap;border-bottom:1px solid var(--rule)}
+table.data thead th{font-weight:700;color:var(--ink);background:var(--code-bg);border-bottom:1px solid var(--rule-strong);vertical-align:bottom}
+table.data th:first-child,table.data td:first-child{text-align:left}
+table.data tbody th{font-weight:600;text-align:left}
+table.data tbody tr:last-child > *{border-bottom:0}
+table.data .group th{font-weight:700;font-size:.86rem;color:var(--ink-2);background:transparent;padding-top:.8rem;padding-bottom:.25rem;border-bottom:0;text-align:left}
+table.data .best{font-weight:800;color:var(--ink)}
+table.data td{color:var(--ink)}
+table.data .sd{color:var(--ink-2);font-size:.88em}
+table.data .c{text-align:center}
+table.data .l{text-align:left}
+table.data .wrap{white-space:normal;min-width:13rem}
+table.data .tide-col{background:color-mix(in srgb,var(--i-soft) 55%,transparent)}
+.table-note{color:var(--ink-2);font-size:.92rem;margin:.55rem 0 0}
+.change{display:inline-block;font-size:.84rem;font-weight:700;padding:.18rem .5rem;border-radius:4px;background:var(--e-soft);color:var(--ink);white-space:nowrap}
+.change--add{background:var(--i-soft)}
+
+/* placeholders for media that is not published yet */
+.placeholder{aspect-ratio:16/9;border:2px dashed var(--rule-strong);border-radius:8px;background:
+  repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--rule) 45%,transparent) 14px 15px);
+  display:grid;place-items:center;text-align:center;padding:1rem;color:var(--ink-2)}
+.placeholder svg{width:2.6rem;height:2.6rem;color:var(--ink-3);margin:0 auto .5rem}
+.placeholder strong{display:block;color:var(--ink);font-size:1.05rem}
+.placeholder span{display:block;font-size:.9rem;margin-top:.15rem}
+
+/* callouts */
+.note{border-left:3px solid var(--accent);background:var(--surface);border-radius:0 6px 6px 0;padding:.8rem 1rem;margin-top:1.3rem;border-top:1px solid var(--rule);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.note p{margin:0}
+.note p + p{margin-top:.5rem}
+.deflist{margin:1.2rem 0 0;padding:0}
+.deflist dt{font-weight:700;margin-top:.9rem}
+.deflist dd{margin:.15rem 0 0;color:var(--ink)}
+
+/* citation */
+.cite-box{margin-top:1.2rem;border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--code-bg)}
+.cite-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.45rem .6rem .45rem 1rem;border-bottom:1px solid var(--rule);background:var(--surface);font-weight:700;font-size:.9rem;color:var(--ink-2)}
+.cite-box pre.bibtex{margin:0;padding:.9rem 1rem;font-size:.84rem;border:0;border-radius:0;white-space:pre-wrap;overflow-wrap:anywhere}
+
+.project-end{max-width:var(--measure);margin:3rem auto 0;padding:0 1.5rem 1rem;color:var(--ink-2);font-size:.95rem}
+
+@media (max-width:34rem){
+  .project-hero{padding:2rem 1rem 1.2rem}
+  .section,.wide,.project-end{padding-left:1rem;padding-right:1rem}
+  .section-bar ul{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding:.15rem 1rem;gap:0 1.2rem}
+  .section-bar a{white-space:nowrap}
+  .authors{font-size:1rem}
+  .abstract{font-size:1.06rem}
+  .btn{padding:.65rem .95rem;font-size:.93rem}
+}

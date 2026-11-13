@@ -1,0 +1,82 @@
+---
+layout: project
+title: "Efficient Real-time Smoke Filtration with 3D LiDAR for Search and Rescue with Autonomous Heterogeneous Robotic Systems"
+description: >-
+  A modular, sensor-agnostic filter that removes smoke and dust returns from 3D LiDAR point clouds in real time,
+  evaluated during frontier exploration underground. IECON 2023.
+og_image: /assets/img/smoke/tunnel-1.webp
+venue: "IECON 2023"
+authors:
+  - {name: "Alexander Kyuroson", url: "/"}
+  - {name: "Anton Koval"}
+  - {name: "George Nikolakopoulos"}
+affiliations:
+  - {name: "Robotics and Artificial Intelligence Group, Luleå University of Technology"}
+actions:
+  - {label: "Paper", icon: "paper", url: "https://arxiv.org/pdf/2308.07264"}
+  - {label: "arXiv", icon: "book", url: "https://arxiv.org/abs/2308.07264"}
+  - {label: "alphaXiv", icon: "chat", url: "https://www.alphaxiv.org/abs/2308.07264"}
+  - {label: "Published version", icon: "link", url: "https://doi.org/10.1109/IECON51785.2023.10312303"}
+  - {label: "Cite", icon: "quote", url: "#citation"}
+sections:
+  - {id: "abstract", label: "Abstract"}
+  - {id: "method", label: "Method"}
+  - {id: "results", label: "Results"}
+  - {id: "citation", label: "Citation"}
+---
+<div class="wide">
+  <div class="fig-row">
+    {% include figure.html src="/assets/img/smoke/tunnel-1.webp" plate="photo" w="763" h="575" alt="Camera view down a rock tunnel with streaks of dust in the lamp light." %}
+    {% include figure.html src="/assets/img/smoke/tunnel-2.webp" plate="photo" w="761" h="575" alt="Camera view of the same tunnel almost hidden behind a cloud of dust." %}
+    {% include figure.html light="/assets/img/smoke/lidar-in-dust.webp" dark="/assets/img/smoke/lidar-in-dust-dark.webp" w="463" h="313" alt="Sketch of a drone between two walls. Its rotors lift dust particles, and some LiDAR beams return from the dust instead of the walls." %}
+  </div>
+  <p class="fig-note">A subterranean environment that is hard for LiDAR sensors. Left and center: dust raised in a tunnel, seen from the robot. Right: the propulsion system of a drone entrains particles, and LiDAR beams return from them instead of from the walls.</p>
+</div>
+
+<section class="section section--first" id="abstract" aria-labelledby="abstract-h">
+  <h2 id="abstract-h">Abstract</h2>
+  <p class="abstract">Search and Rescue (SAR) missions in harsh and unstructured Sub-Terranean (Sub-T) environments in the presence of aerosol particles have recently become the main focus in the field of robotics. Aerosol particles such as smoke and dust directly affect the performance of any mobile robotic platform due to their reliance on their onboard perception systems for autonomous navigation and localization in Global Navigation Satellite System (GNSS)-denied environments. Although obstacle avoidance and object detection algorithms are robust to the presence of noise to some degree, their performance directly relies on the quality of captured data by onboard sensors such as Light Detection And Ranging (LiDAR) and camera. Thus, this paper proposes a novel modular agnostic filtration pipeline based on intensity and spatial information such as local point density for removal of detected smoke particles from Point Cloud (PCL) prior to its utilization for collision detection. Furthermore, the efficacy of the proposed framework in the presence of smoke during multiple frontier exploration missions is investigated while the experimental results are presented to facilitate comparison with other methodologies and their computational impact. This provides valuable insight to the research community for better utilization of filtration schemes based on available computation resources while considering the safe autonomous navigation of mobile robots.</p>
+</section>
+
+<section class="section" id="method" aria-labelledby="method-h">
+  <h2 id="method-h">Method</h2>
+  <p>The filter combines the intensity of each return with spatial information such as the local point density, and removes the detected smoke particles from the point cloud before it is used for collision detection. The pipeline is modular and does not depend on a particular sensor; it has one branch for close range and one for long range.</p>
+  <div class="wide">
+    {% include figure.html dense="1" light="/assets/img/smoke/pipeline.webp" dark="/assets/img/smoke/pipeline-dark.webp" w="1800" h="320" alt="Flow chart. The point cloud passes a radius filter and then splits. Close range: intensity filter, DoSCOR filter and Savitzky-Golay filter. Long range: Savitzky-Golay filter and 2D ROR filter. The two branches are merged into the filtered point cloud." caption="Overview of the point cloud filtration framework, with one branch for close range and one for long range." %}
+  </div>
+</section>
+
+<section class="section" id="results" aria-labelledby="results-h">
+  <h2 id="results-h">Results</h2>
+  {%- capture t2cap -%}
+  Test 2: with the filter on. The identified smoke is red, the environment <span class="only-light">black</span><span class="only-dark">white</span>.
+  {%- endcapture %}
+  <div class="wide">
+    <div class="fig-row">
+      {% include figure.html light="/assets/img/smoke/pcl-raw.webp" dark="/assets/img/smoke/pcl-raw-dark.webp" w="1300" h="490" alt="Colored point cloud of a curved tunnel with scattered points filling its interior." caption="Test 1: raw point cloud with dust." %}
+      {% include figure.html light="/assets/img/smoke/pcl-filtered.webp" dark="/assets/img/smoke/pcl-filtered-dark.webp" w="1300" h="522" alt="The same point cloud after filtering; the tunnel walls remain and the interior is clear." caption="Test 1: with the filter on." %}
+      {% include figure.html light="/assets/img/smoke/pcl-dust.webp" dark="/assets/img/smoke/pcl-dust-dark.webp" w="512" h="362" alt="The small cluster of points that the filter removed." caption="Test 1: the dust that was isolated." %}
+    </div>
+    <div class="fig-row">
+      {% include figure.html light="/assets/img/smoke/test2-raw.webp" dark="/assets/img/smoke/test2-raw-dark.webp" w="1500" h="597" alt="Top-view point map of a tunnel section, with a dense blob of points in the middle of the passage." caption="Test 2: map generated with DLO from the raw point cloud in the presence of smoke." %}
+      {% include figure.html light="/assets/img/smoke/test2-filtered.webp" dark="/assets/img/smoke/test2-filtered-dark.webp" w="1500" h="511" alt="The same map with the blob of smoke points marked in red." caption=t2cap %}
+    </div>
+  </div>
+  <div class="note">
+    <p>This work was partially funded by the European Union's Horizon 2020 Research and Innovation Programme under Grant Agreement No. 101003591, NEX-GEN SIMS.</p>
+  </div>
+</section>
+
+<section class="section" id="citation" aria-labelledby="citation-h">
+  <h2 id="citation-h">Citation</h2>
+  <div class="cite-box">
+    <div class="cite-head"><span>BibTeX</span><button class="chip-link" type="button" data-copy="bib">Copy</button></div>
+<pre class="bibtex" tabindex="0"><code id="bib">{% raw %}@inproceedings{kyuroson2023smoke,
+  title     = {Efficient Real-time Smoke Filtration with {3D} {LiDAR} for Search and Rescue with Autonomous Heterogeneous Robotic Systems},
+  author    = {Kyuroson, Alexander and Koval, Anton and Nikolakopoulos, George},
+  booktitle = {IECON 2023 -- 49th Annual Conference of the IEEE Industrial Electronics Society},
+  year      = {2023},
+  doi       = {10.1109/IECON51785.2023.10312303}
+}{% endraw %}</code></pre>
+  </div>
+</section>

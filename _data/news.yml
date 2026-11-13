@@ -1,0 +1,19 @@
+# Newest first. `date` is free text; `iso` is used for the <time> element.
+- date: December 9–13, 2026
+  iso: 2026-12-09
+  text: >-
+    <a href="/tide/">TIDE</a> to be presented as a poster at the NeurIPS 2026 satellite event in Paris.
+- date: September 2026
+  iso: 2026-09
+  text: >-
+    <a href="/tide/">TIDE: Asymmetric Neural Circuits for Stabilized Temporal Inhibitory-Excitatory Dynamics</a>
+    (with Denis Kleyko and Marcus Liwicki) accepted to NeurIPS 2026.
+- date: May 19, 2026
+  iso: 2026-05-19
+  text: >-
+    TIDE preprint released: <a href="https://arxiv.org/abs/2605.19403">arXiv:2605.19403</a>.
+- date: November 2024
+  iso: 2024-11
+  text: >-
+    Article on autonomous orbit management for low-earth-orbit satellites published in the
+    European Journal of Control (<a href="/orbit-management/">project page</a>).

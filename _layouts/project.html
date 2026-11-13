@@ -1,0 +1,50 @@
+---
+layout: default
+---
+{%- comment -%}
+  Project page. Front matter:
+    title, short_title (shown in color at the start of the title, optional), venue,
+    authors: [{name, url (optional), aff: "1"}], affiliations: [{id, name}],
+    actions: [{label, url, icon, soon (optional: true makes a disabled "coming soon" button)}],
+    sections: [{id, label}] for the bar under the title block.
+{%- endcomment -%}
+<main id="main" class="project{% if page.project_class %} {{ page.project_class }}{% endif %}">
+  <header class="project-hero">
+    {%- if page.venue %}
+    <p class="project-venue">{{ page.venue }}</p>
+    {%- endif %}
+    <h1 class="project-title">{% if page.short_title %}<span class="name">{{ page.short_title }}:</span> {{ page.title | remove_first: page.short_title | remove_first: ": " }}{% else %}{{ page.title }}{% endif %}</h1>
+    <ul class="authors">
+      {%- for a in page.authors %}
+      <li>{% if a.url %}<a href="{% if a.url contains '://' %}{{ a.url }}{% else %}{{ a.url | relative_url }}{% endif %}">{{ a.name }}</a>{% else %}{{ a.name }}{% endif %}{% if a.aff %}<sup>{{ a.aff }}</sup>{% endif %}</li>
+      {%- endfor %}
+    </ul>
+    <ul class="affiliations">
+      {%- for f in page.affiliations %}
+      <li>{% if f.id %}<sup>{{ f.id }}</sup>{% endif %}{{ f.name }}</li>
+      {%- endfor %}
+    </ul>
+    <ul class="actions">
+      {%- for b in page.actions %}
+      <li>
+        {%- if b.soon -%}
+        <span class="btn" role="link" aria-disabled="true">{% include icon.html name=b.icon %}{{ b.label }} <span class="soon">coming soon</span></span>
+        {%- else -%}
+        <a class="btn{% unless forloop.first %} btn--ghost{% endunless %}" href="{% if b.url contains '://' or b.url contains '#' %}{{ b.url }}{% else %}{{ b.url | relative_url }}{% endif %}">{% include icon.html name=b.icon %}{{ b.label }}</a>
+        {%- endif -%}
+      </li>
+      {%- endfor %}
+    </ul>
+  </header>
+  {%- if page.sections %}
+  <nav class="section-bar" aria-label="On this page">
+    <ul>
+      {%- for s in page.sections %}
+      <li><a href="#{{ s.id }}">{{ s.label }}</a></li>
+      {%- endfor %}
+    </ul>
+  </nav>
+  {%- endif %}
+{{ content }}
+  <p class="project-end"><a href="{{ '/projects/' | relative_url }}">All projects</a> &nbsp;&nbsp;&nbsp; <a href="{{ '/' | relative_url }}">About {{ site.data.profile.name }}</a></p>
+</main>

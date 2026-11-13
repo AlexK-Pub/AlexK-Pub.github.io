@@ -1,0 +1,45 @@
+---
+layout: home
+title: Alexander Kyuroson
+---
+<h1>About</h1>
+<p>I work in the <a href="https://www.ltu.se/en/research/research-subjects/machine-learning">Machine Learning group</a> at Luleå University of Technology, Sweden, where I am supervised by <a href="https://www.ltu.se/en/staff/m/marcus-liwicki">Marcus Liwicki</a> and <a href="https://oru.se/english/employee/denis_kleyko">Denis Kleyko</a> (Örebro University). My research is on neuro-inspired architectures, specifically recurrent networks whose units are divided into excitatory and inhibitory populations. I study when such networks remain stable and whether that structure makes them more robust to corrupted input.</p>
+<p>This work led to <a href="{{ '/tide/' | relative_url }}">TIDE</a>, written with both supervisors and accepted to NeurIPS 2026. TIDE extends the Continuous Thought Machine with Dale-constrained Wilson-Cowan dynamics, lateral inhibition, and a surprise-gated memory, and the paper supports the design with proofs of convergence and stability.</p>
+<p>My earlier work was done in the university's Robotics and Artificial Intelligence group. There I worked on perception, which included <a href="{{ '/smoke-filtration/' | relative_url }}">filtering smoke out of LiDAR point clouds</a> for search-and-rescue robots, <a href="{{ '/powerline-segmentation/' | relative_url }}">segmenting power lines</a> in LiDAR scans, and recording a <a href="{{ '/subt-dataset/' | relative_url }}">multimodal dataset</a> in an underground environment. I also worked on <a href="{{ '/orbit-management/' | relative_url }}">autonomous orbit management</a> for satellites in low Earth orbit, using deep reinforcement learning.</p>
+
+<h2 id="interests">Research interests</h2>
+<ul class="chips">
+  {%- for i in site.data.profile.interests %}
+  <li>{{ i }}</li>
+  {%- endfor %}
+</ul>
+
+<h2 id="news">News</h2>
+<ul class="news">
+  {%- capture hb %}href="{{ site.baseurl }}/{% endcapture %}
+  {%- for n in site.data.news %}
+  <li>
+    <time datetime="{{ n.iso }}">{{ n.date }}</time>
+    <p>{{ n.text | replace: 'href="/', hb }}</p>
+  </li>
+  {%- endfor %}
+</ul>
+
+<h2 id="projects">Projects</h2>
+<ul class="cards">
+  {%- comment -%} The two most recent projects (the first two entries of _data/projects.yml). The rest are on /projects/. {%- endcomment -%}
+  {%- for item in site.data.projects limit:2 %}
+  {% include card.html item=item %}
+  {%- endfor %}
+</ul>
+<p class="more"><a href="{{ '/projects/' | relative_url }}">All projects</a></p>
+
+<h2 id="publications">Selected publications</h2>
+<ul class="pubs">
+  {%- for pub in site.data.publications %}
+  {%- if pub.selected %}
+  {% include pub.html pub=pub %}
+  {%- endif %}
+  {%- endfor %}
+</ul>
+<p class="more"><a href="{{ '/publications/' | relative_url }}">All publications</a></p>

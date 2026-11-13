@@ -1,0 +1,12 @@
+---
+layout: page
+title: Projects
+description: Project pages for papers by Alexander Kyuroson, with figures, results and citations.
+---
+<h1>Projects</h1>
+<p>Project pages with figures, results, and citation details for each paper.</p>
+<ul class="cards">
+  {%- for item in site.data.projects %}
+  {% include card.html item=item %}
+  {%- endfor %}
+</ul>

@@ -1,0 +1,95 @@
+---
+layout: project
+title: "Multimodal Dataset from Harsh Sub-Terranean Environment with Aerosol Particles for Frontier Exploration"
+description: >-
+  Synchronized LiDAR, mmWave radar and infrared RGB-D recordings from an underground tunnel with dense vapor,
+  for evaluating navigation and localization. MED 2023.
+og_image: /assets/img/subt/tunnel-clear.webp
+venue: "MED 2023"
+authors:
+  - {name: "Alexander Kyuroson", url: "/"}
+  - {name: "Niklas Dahlquist"}
+  - {name: "Nikolaos Stathoulopoulos"}
+  - {name: "Vignesh Kottayam Viswanathan"}
+  - {name: "Anton Koval"}
+  - {name: "George Nikolakopoulos"}
+affiliations:
+  - {name: "Robotics and Artificial Intelligence Group, Luleå University of Technology"}
+actions:
+  - {label: "Paper", icon: "paper", url: "https://arxiv.org/pdf/2304.14520"}
+  - {label: "arXiv", icon: "book", url: "https://arxiv.org/abs/2304.14520"}
+  - {label: "alphaXiv", icon: "chat", url: "https://www.alphaxiv.org/abs/2304.14520"}
+  - {label: "Published version", icon: "link", url: "https://doi.org/10.1109/MED59994.2023.10185906"}
+  - {label: "Cite", icon: "quote", url: "#citation"}
+sections:
+  - {id: "abstract", label: "Abstract"}
+  - {id: "platform", label: "Platform"}
+  - {id: "conditions", label: "Conditions"}
+  - {id: "validation", label: "Validation"}
+  - {id: "citation", label: "Citation"}
+---
+<div class="wide">
+  {% include figure.html src="/assets/img/subt/tunnel-vapor.webp" plate="photo" w="1600" h="598" alt="Two photos of the same underground tunnel: clear on the left, filled with dense vapor on the right." caption="The subterranean environment without and with dense vapor, Luleå, Sweden." %}
+</div>
+
+<section class="section section--first" id="abstract" aria-labelledby="abstract-h">
+  <h2 id="abstract-h">Abstract</h2>
+  <p class="abstract">Algorithms for autonomous navigation in environments without Global Navigation Satellite System (GNSS) coverage mainly rely on onboard perception systems. These systems commonly incorporate sensors like cameras and Light Detection and Rangings (LiDARs), the performance of which may degrade in the presence of aerosol particles. Thus, there is a need of fusing acquired data from these sensors with data from Radio Detection and Rangings (RADARs) which can penetrate through such particles. Overall, this will improve the performance of localization and collision avoidance algorithms under such environmental conditions. This paper introduces a multimodal dataset from the harsh and unstructured underground environment with aerosol particles. A detailed description of the onboard sensors and the environment, where the dataset is collected are presented to enable full evaluation of acquired data. Furthermore, the dataset contains synchronized raw data measurements from all onboard sensors in Robot Operating System (ROS) format to facilitate the evaluation of navigation, and localization algorithms in such environments. In contrast to the existing datasets, the focus of this paper is not only to capture both temporal and spatial data diversities but also to present the impact of harsh conditions on captured data. Therefore, to validate the dataset, a preliminary comparison of odometry from onboard LiDARs is presented.</p>
+</section>
+
+<section class="section" id="platform" aria-labelledby="platform-h">
+  <h2 id="platform-h">Platform</h2>
+  <p>The recordings come from a Pioneer ground robot that carries two LiDARs, four mmWave radar modules, an infrared-enabled RGB-D camera and an IMU. All sensors are recorded as synchronized raw data in ROS format.</p>
+  <div class="wide">
+    <div class="fig-row">
+      {% include figure.html src="/assets/img/subt/platform.webp" plate="photo" w="1128" h="900" alt="The wheeled robot with its sensors in a tunnel, lit by its own lamp through vapor." caption="The Pioneer robot with the sensors in the tunnel." %}
+      {% include figure.html light="/assets/img/subt/components.webp" dark="/assets/img/subt/components-dark.webp" w="731" h="689" alt="Isometric drawing of the robot with seven numbered components." caption="Components: 1 OS1-32 LiDAR, 2 mmWave radars, 3 M1600 LiDAR, 4 OAK-D Pro camera, 5 LED, 6 IMU, 7 Intel NUC." %}
+    </div>
+    <div class="fig-row">
+      {% include figure.html light="/assets/img/subt/fov-side.webp" dark="/assets/img/subt/fov-side-dark.webp" w="1025" h="574" alt="Side-view drawing of the robot with the vertical fields of view of its sensors and their mounting heights." caption="Sensor suite with its fields of view." %}
+      {% include figure.html light="/assets/img/subt/radar-top.webp" dark="/assets/img/subt/radar-top-dark.webp" w="677" h="614" alt="Top-view drawing of the robot with four 60-degree radar fields of view pointing forward, backward, left and right." caption="Top view of the four mmWave radar modules and their fields of view." %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="conditions" aria-labelledby="conditions-h">
+  <h2 id="conditions-h">Conditions</h2>
+  <p>The dataset covers darkness and dense vapor, the conditions in which cameras and LiDARs degrade and radar keeps working.</p>
+  <div class="wide">
+    <div class="fig-row">
+      {% include figure.html src="/assets/img/subt/ir-dark.webp" plate="photo" w="868" h="496" alt="Infrared camera image of a dark tunnel with a stack of boxes on the right." caption="IR-enabled camera in the dark." %}
+      {% include figure.html src="/assets/img/subt/ir-vapor.webp" plate="photo" w="771" h="441" alt="Infrared camera image of the tunnel in dense vapor; two boxes are faintly visible." caption="IR-enabled camera in dense vapor." %}
+      {% include figure.html src="/assets/img/subt/ir-safety-clothing.webp" plate="photo" w="771" h="443" alt="Infrared camera image in vapor in which the reflective stripes of safety clothing stand out." caption="Safety clothing detected with IR." %}
+    </div>
+    <p class="fig-note">The IR-illuminated camera in visually degraded conditions, for obstacle detection and search-and-rescue missions.</p>
+  </div>
+</section>
+
+<section class="section" id="validation" aria-labelledby="validation-h">
+  <h2 id="validation-h">Validation</h2>
+  <p>As a first check of the recordings, the paper compares odometry computed from the two onboard LiDARs.</p>
+  <div class="wide">
+    <div class="fig-row">
+      {% include figure.html light="/assets/img/subt/odometry.webp" dark="/assets/img/subt/odometry-dark.webp" w="1300" h="539" alt="3D plot of two nearly overlapping trajectories, one per LiDAR, that run along a tunnel and around a loop." caption="DLO pose estimation for both LiDARs." %}
+      {% include figure.html light="/assets/img/subt/map.webp" dark="/assets/img/subt/map-dark.webp" w="1600" h="621" alt="Colored point-cloud map of a tunnel that ends in a loop." caption="Map of the tunnel generated from the M1600 LiDAR." %}
+    </div>
+  </div>
+  <div class="note">
+    <p>This work was funded by the European Union's Horizon 2020 Research and Innovation Programme under Grant Agreement No. 101003591, NEX-GEN SIMS.</p>
+  </div>
+</section>
+
+<section class="section" id="citation" aria-labelledby="citation-h">
+  <h2 id="citation-h">Citation</h2>
+  <div class="cite-box">
+    <div class="cite-head"><span>BibTeX</span><button class="chip-link" type="button" data-copy="bib">Copy</button></div>
+<pre class="bibtex" tabindex="0"><code id="bib">{% raw %}@inproceedings{kyuroson2023subt,
+  title     = {Multimodal Dataset from Harsh Sub-Terranean Environment with Aerosol Particles for Frontier Exploration},
+  author    = {Kyuroson, Alexander and Dahlquist, Niklas and Stathoulopoulos, Nikolaos and Viswanathan, Vignesh Kottayam and Koval, Anton and Nikolakopoulos, George},
+  booktitle = {31st Mediterranean Conference on Control and Automation (MED)},
+  pages     = {716--721},
+  year      = {2023},
+  doi       = {10.1109/MED59994.2023.10185906}
+}{% endraw %}</code></pre>
+  </div>
+</section>

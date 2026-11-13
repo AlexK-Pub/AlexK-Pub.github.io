@@ -1,0 +1,15 @@
+{%- assign p = site.data.profile -%}
+<img class="avatar" width="184" height="184" alt="Portrait of {{ p.name }}"
+     src="{{ '/assets/img/profile/alexander-kyuroson-320.jpg' | relative_url }}"
+     srcset="{{ '/assets/img/profile/alexander-kyuroson-320.jpg' | relative_url }} 320w, {{ '/assets/img/profile/alexander-kyuroson-640.jpg' | relative_url }} 640w"
+     sizes="184px">
+<p class="sidebar-name">{{ p.name }}</p>
+<p class="sidebar-bio">{{ p.short_bio }}</p>
+<ul class="contact-list">
+  <li>{% include icon.html name="pin" %}<span>{{ p.location }}</span></li>
+  <li>{% include icon.html name="building" %}<a href="{{ p.affiliation_url }}">{{ p.affiliation }}</a></li>
+  <li>{% include icon.html name="mail" %}<span data-mail-user="{{ p.email_user }}" data-mail-domain="{{ p.email_domain }}">{{ p.email_user }} [at] {{ p.email_domain }}</span></li>
+  {%- for l in p.links %}
+  <li>{% include icon.html name=l.icon %}<a href="{{ l.url }}" rel="me noopener">{{ l.label }}</a></li>
+  {%- endfor %}
+</ul>

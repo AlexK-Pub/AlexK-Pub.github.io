@@ -1,0 +1,101 @@
+---
+layout: project
+title: "Towards Fully Autonomous Orbit Management for Low-Earth Orbit Satellites Based on Neuro-Evolutionary Algorithms and Deep Reinforcement Learning"
+description: >-
+  Station-keeping for low-thrust satellites in low-earth orbit, learned with deep reinforcement learning (DDPG, TD3)
+  and with neuro-evolution (NEAT) in the same environment. European Journal of Control, 2024.
+og_image: /assets/img/orbit/frames.webp
+venue: "European Journal of Control, 2024"
+authors:
+  - {name: "Alexander Kyuroson", url: "/"}
+  - {name: "Avijit Banerjee"}
+  - {name: "Nektarios Aristeidis Tafanidis"}
+  - {name: "Sumeet Satpute"}
+  - {name: "George Nikolakopoulos"}
+affiliations:
+  - {name: "Robotics and Artificial Intelligence Group, Luleå University of Technology"}
+actions:
+  - {label: "Article (open access)", icon: "paper", url: "https://doi.org/10.1016/j.ejcon.2024.101052"}
+  - {label: "Cite", icon: "quote", url: "#citation"}
+sections:
+  - {id: "abstract", label: "Abstract"}
+  - {id: "method", label: "Method"}
+  - {id: "results", label: "Results"}
+  - {id: "citation", label: "Citation"}
+---
+<div class="wide">
+  <div class="fig-row">
+    {% include figure.html light="/assets/img/orbit/frames.webp" dark="/assets/img/orbit/frames-dark.webp" w="1150" h="873" alt="Earth with the inertial ECI axes and a satellite carrying its local LVLH frame with radial, tangential and normal axes." caption="The ECI and LVLH reference frames." %}
+    {% include figure.html light="/assets/img/orbit/drl-framework.webp" dark="/assets/img/orbit/drl-framework-dark.webp" w="911" h="875" alt="Loop between an agent, which holds a policy and an RL algorithm, and an environment that simulates the satellite dynamics. The environment sends the state vector of position and velocity and a reward; the agent returns a control vector of radial, tangential and normal thrust." caption="Layout of the reinforcement-learning framework: the agent receives position and velocity and returns a thrust vector." %}
+  </div>
+</div>
+
+<section class="section section--first" id="abstract" aria-labelledby="abstract-h">
+  <h2 id="abstract-h">Abstract</h2>
+  <p class="abstract">The recent advances in space technology are focusing on fully autonomous, real-time, long-term orbit management and mission planning for large-scale satellite constellations in Low-Earth Orbit (LEO). Thus, a pioneering approach for autonomous orbital station-keeping has been introduced using a model-free Deep Policy Gradient-based Reinforcement Learning (DPGRL) strategy explicitly tailored for LEO. Addressing the critical need for more efficient and self-regulating orbit management in LEO satellite constellations, this work explores the potential synergy between Deep Reinforcement Learning (DRL) and Neuro-Evolution of Augmenting Topology (NEAT) to optimize station-keeping strategies with the primary goal to empower satellite to autonomously maintain their orbit in the presence of external perturbations within an allowable tolerance margin, thereby significantly reducing operational costs while maintaining precise and consistent station-keeping throughout their life cycle. The study specifically tailors DPGRL algorithms for LEO satellites, considering low-thrust constraints for maneuvers and integrating dense reward schemes and domain-based reward shaping techniques. By showcasing the adaptability and scalability of the combined NEAT and DRL framework in diverse operational scenarios, this approach holds immense promise for revolutionizing autonomous orbit management, paving the way for more efficient and adaptable satellite operations while incorporating the physical constraints of satellite, such as thruster limitations.</p>
+</section>
+
+<section class="section" id="method" aria-labelledby="method-h">
+  <h2 id="method-h">Method</h2>
+  <p>Station-keeping is posed as trajectory tracking: the unperturbed orbit is the reference, and the policy has to keep the satellite within a tolerance of it with low thrust. Two families of methods are trained in the same simulated environment.</p>
+  <div class="wide">
+    <div class="fig-row">
+      {% include figure.html light="/assets/img/orbit/trajectory-tracking.webp" dark="/assets/img/orbit/trajectory-tracking-dark.webp" w="700" h="653" alt="A satellite drifting off a dashed reference orbit; the position error is marked at successive time steps." caption="Trajectory tracking: the error between the reference and the actual position at each time step." stage="3" %}
+    </div>
+  </div>
+  <dl class="deflist">
+    <dt>Deep reinforcement learning</dt>
+    <dd>DDPG and TD3, each with actor and critic networks of two fully connected layers (400 and 300 units), temporally correlated exploration noise, a dense shaped reward, and a terminal constraint that ends an episode when the position error reaches 50 km.</dd>
+    <dt>Neuro-evolution</dt>
+    <dd>NEAT evolves the network topology itself, starting from two hidden layers, to see which structure the problem asks for and which state variables the controller needs.</dd>
+  </dl>
+  <div class="wide">
+    {% include figure.html dense="1" light="/assets/img/orbit/ddpg-flowchart.webp" dark="/assets/img/orbit/ddpg-flowchart-dark.webp" w="1400" h="469" alt="Block diagram of DDPG: replay buffer, actor and critic, and their target networks with soft updates." caption="DDPG architecture." %}
+  </div>
+</section>
+
+<section class="section" id="results" aria-labelledby="results-h">
+  <h2 id="results-h">Results</h2>
+  <p>The target is a circular low-earth orbit at 70° inclination. Both reinforcement-learning algorithms solve the task, but DDPG trains unreliably, so TD3 is used for the comparison with NEAT. The topology that NEAT arrives at is close to the TD3 actor, and it does not use every state variable.</p>
+  {%- capture neatcap -%}
+    Topology found by NEAT for the best fitness. Yellow nodes are clusters of neurons; red edges are negative correlations and <span class="only-light">black</span><span class="only-dark">white</span> edges positive ones.
+    {%- endcapture %}
+  <div class="wide">
+    <div class="fig-row">
+      {% include figure.html light="/assets/img/orbit/training-reward.webp" dark="/assets/img/orbit/training-reward-dark.webp" w="976" h="1000" alt="Two training curves of average episodic reward. DDPG rises, collapses around episode 5000 and recovers; TD3 rises within about 50 episodes and stays high with a few short dips." caption="Average episodic training reward for DDPG (top) and TD3 (bottom)." %}
+      {% include figure.html light="/assets/img/orbit/neat-topology.webp" dark="/assets/img/orbit/neat-topology-dark.webp" w="775" h="698" alt="Network found by NEAT: six inputs for position and velocity, a few hidden nodes in two layers, three thrust outputs; edges in two colors mark negative and positive correlations." caption=neatcap %}
+    </div>
+    <div class="fig-row">
+      {% include figure.html light="/assets/img/orbit/trajectory-correction.webp" dark="/assets/img/orbit/trajectory-correction-dark.webp" w="800" h="597" alt="3D plot of one orbit: the reference, the trajectory under the reinforcement-learning policy and the trajectory under NEAT lie on top of each other." caption="Trajectory correction with deep reinforcement learning and with NEAT, against the reference orbit." %}
+      {% include figure.html light="/assets/img/orbit/trajectory-closeup.webp" dark="/assets/img/orbit/trajectory-closeup-dark.webp" w="800" h="658" alt="Close-up of a segment of the orbit in the XY-plane, with the two corrected trajectories staying between the outer and inner zone of the ideal path." caption="Close-up of a segment of the trajectory." %}
+    </div>
+    <div class="fig-row">
+      {% include figure.html light="/assets/img/orbit/position-error-td3.webp" dark="/assets/img/orbit/position-error-td3-dark.webp" w="925" h="886" alt="Three plots of position error in x, y and z over about 10,000 seconds for TD3, within roughly plus or minus 25 km." caption="Component-wise position error for TD3." %}
+      {% include figure.html light="/assets/img/orbit/position-error-neat.webp" dark="/assets/img/orbit/position-error-neat-dark.webp" w="925" h="888" alt="Three plots of position error in x, y and z over about 5,000 seconds for NEAT, within roughly plus or minus 25 km." caption="Component-wise position error for NEAT." %}
+    </div>
+    <div class="fig-row">
+      {% include figure.html light="/assets/img/orbit/velocity-error-td3.webp" dark="/assets/img/orbit/velocity-error-td3-dark.webp" w="925" h="874" alt="Three plots of velocity error in x, y and z for TD3. The x and z components stay within about 0.03 km per second; the y component starts near 0.09 km per second and decays." caption="Component-wise velocity error for TD3." %}
+      {% include figure.html light="/assets/img/orbit/velocity-error-neat.webp" dark="/assets/img/orbit/velocity-error-neat-dark.webp" w="925" h="871" alt="Three plots of velocity error in x, y and z for NEAT, within plus or minus 0.03 km per second." caption="Component-wise velocity error for NEAT." %}
+    </div>
+  </div>
+  <div class="note">
+    <p>Figures are from the article, © 2024 The Authors, published under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> license.</p>
+    <p>This work was partially funded by the European Space Agency (ESA) open Invitations to Tender and innovation research grant in the OPTACOM project, in collaboration with OHB Sweden, under Grant Contract no. OPC-OSE-CC-0536.</p>
+  </div>
+</section>
+
+<section class="section" id="citation" aria-labelledby="citation-h">
+  <h2 id="citation-h">Citation</h2>
+  <div class="cite-box">
+    <div class="cite-head"><span>BibTeX</span><button class="chip-link" type="button" data-copy="bib">Copy</button></div>
+<pre class="bibtex" tabindex="0"><code id="bib">{% raw %}@article{kyuroson2024orbit,
+  title   = {Towards fully autonomous orbit management for low-earth orbit satellites based on neuro-evolutionary algorithms and deep reinforcement learning},
+  author  = {Kyuroson, Alexander and Banerjee, Avijit and Tafanidis, Nektarios Aristeidis and Satpute, Sumeet and Nikolakopoulos, George},
+  journal = {European Journal of Control},
+  volume  = {80},
+  pages   = {101052},
+  year    = {2024},
+  doi     = {10.1016/j.ejcon.2024.101052}
+}{% endraw %}</code></pre>
+  </div>
+</section>

@@ -1,0 +1,235 @@
+/* ==========================================================================
+   Alexander Kyuroson — site styles
+   Colors follow the two populations in the TIDE paper: excitatory blue, inhibitory red.
+   The 80:20 rule under the masthead is the E:I split used throughout that work.
+   ========================================================================== */
+
+/* ---------- fonts (self-hosted, no third-party requests) ---------- */
+@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:200 900;font-display:swap;
+  src:url("../fonts/source-sans-3-latin-wght-normal.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:200 900;font-display:swap;
+  src:url("../fonts/source-sans-3-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:200 900;font-display:swap;
+  src:url("../fonts/source-sans-3-greek-wght-normal.woff2") format("woff2");
+  unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:"Source Sans 3";font-style:italic;font-weight:200 900;font-display:swap;
+  src:url("../fonts/source-sans-3-latin-wght-italic.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Source Sans 3";font-style:italic;font-weight:200 900;font-display:swap;
+  src:url("../fonts/source-sans-3-latin-ext-wght-italic.woff2") format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Source Sans 3";font-style:italic;font-weight:200 900;font-display:swap;
+  src:url("../fonts/source-sans-3-greek-wght-italic.woff2") format("woff2");
+  unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:"STIX Two";font-style:normal;font-weight:400 700;font-display:swap;
+  src:url("../fonts/stix-two-text-latin-wght-normal.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"STIX Two";font-style:normal;font-weight:400 700;font-display:swap;
+  src:url("../fonts/stix-two-text-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"STIX Two";font-style:normal;font-weight:400 700;font-display:swap;
+  src:url("../fonts/stix-two-text-greek-wght-normal.woff2") format("woff2");
+  unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+@font-face{font-family:"STIX Two";font-style:italic;font-weight:400 700;font-display:swap;
+  src:url("../fonts/stix-two-text-latin-wght-italic.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"STIX Two";font-style:italic;font-weight:400 700;font-display:swap;
+  src:url("../fonts/stix-two-text-latin-ext-wght-italic.woff2") format("woff2");
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"STIX Two";font-style:italic;font-weight:400 700;font-display:swap;
+  src:url("../fonts/stix-two-text-greek-wght-italic.woff2") format("woff2");
+  unicode-range:U+0370-0377,U+037A-037F,U+0384-038A,U+038C,U+038E-03A1,U+03A3-03FF}
+
+/* ---------- tokens ---------- */
+/* Dark is the default theme: it applies when nothing is chosen, with or without JavaScript, whatever the
+   system setting is. The light theme applies only after the visitor picks it with the toggle. */
+:root{
+  color-scheme:dark;
+  --bg:#0C1016; --surface:#141A23; --ink:#E7EBF0; --ink-2:#B7C0CB; --ink-3:#919CAA;
+  --rule:#27303C; --rule-strong:#3A4655;
+  --e:#8FB3F4; --e-soft:#17233A;
+  --i:#F2877E; --i-soft:#3A1B19;
+  --ok:#5FD08A;
+  --plate:#000000; --code-bg:#161D27; --focus:#8FB3F4;
+  --btn-bg:#E7EBF0; --btn-ink:#0C1016; --btn-off:#6C7786;
+  --link:var(--e);
+  --sans:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:"STIX Two","STIX Two Text",Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --measure:44rem; --wide:66rem;
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#F6F8FA; --surface:#FFFFFF; --ink:#141A22; --ink-2:#465160; --ink-3:#5F6B7A;
+  --rule:#D5DCE5; --rule-strong:#B4BECB;
+  --e:#2A54A6; --e-soft:#E4EBF7;         /* excitatory */
+  --i:#B3261E; --i-soft:#F9E6E4;         /* inhibitory */
+  --ok:#14713A;
+  --plate:#FFFFFF; --code-bg:#ECF0F4; --focus:#1B62D9;
+  --btn-bg:#141A22; --btn-ink:#FFFFFF; --btn-off:#8793A2;
+}
+
+/* theme-paired content: only the variant for the active theme is shown.
+   !important because layout rules elsewhere set display on the same elements. */
+:root[data-theme="light"] .only-dark{display:none !important}
+:root:not([data-theme="light"]) .only-light{display:none !important}
+
+/* ---------- base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:1.125rem;line-height:1.58;
+  font-synthesis-weight:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+img,svg,video{max-width:100%;height:auto}
+img{display:block}
+a{color:var(--link);text-decoration-thickness:.07em;text-underline-offset:.18em}
+a:hover{text-decoration-thickness:.14em}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+h1,h2,h3{font-family:var(--serif);color:var(--ink);line-height:1.2;margin:0;font-weight:600;text-wrap:balance}
+h1{font-size:2.2rem;letter-spacing:-.01em}
+h2{font-size:1.55rem;margin-top:2.6rem;padding-bottom:.45rem;border-bottom:1px solid var(--rule)}
+h3{font-size:1.2rem;margin-top:1.8rem}
+p{margin:.9rem 0}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+strong{font-weight:700}
+small,.small{font-size:.9rem}
+.muted{color:var(--ink-2)}
+.math{font-family:var(--serif);font-style:italic;white-space:nowrap}
+.math sub,.math sup{font-style:normal;font-size:.72em}
+.num{font-variant-numeric:tabular-nums lining-nums}
+code,pre{font-family:var(--mono);font-size:.86rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--surface);color:var(--ink);padding:.6rem 1rem;z-index:20}
+.skip:focus{left:.5rem;top:.5rem}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* ---------- justified text ----------
+   Running text is justified on every page and at every width. Hyphenation is on so that
+   narrow columns (phones, the sidebar, cards) do not open wide gaps between words. */
+p,dd,figcaption,.content li,.section li,.page li{text-align:justify;text-justify:inter-word;
+  -webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:6 3 3;overflow-wrap:break-word}
+/* labels, titles and controls are not running text */
+.sidebar-name,.pub-title,.card-title,.card-meta,.more,.swap-label,.scroll-hint,.eq-note,.project-end,.site-footer p,
+.chips li,.contact-list li,.pub-links li,.cards > li,.news > li,.pubs > li,.authors li,.affiliations li,.actions li,.section-bar li,
+.placeholder,.cite-head{text-align:start;-webkit-hyphens:manual;hyphens:manual}
+.project-venue,.project-hero p,.project-hero li{text-align:center;-webkit-hyphens:manual;hyphens:manual}
+pre,code,table,.katex{-webkit-hyphens:manual;hyphens:manual;text-align:start}
+table.data td,table.data th{-webkit-hyphens:manual;hyphens:manual}
+
+/* ---------- masthead ---------- */
+.masthead{background:var(--surface);position:relative}
+.masthead::after{content:"";display:block;height:3px;
+  background:linear-gradient(90deg,var(--e) 0 80%,var(--i) 80% 100%)}
+.masthead-inner{max-width:78rem;margin:0 auto;padding:.7rem 1.5rem;display:flex;align-items:center;gap:1rem 1.75rem;flex-wrap:wrap}
+.site-name{font-family:var(--serif);font-weight:700;font-size:1.2rem;color:var(--ink);text-decoration:none;margin-right:auto}
+.site-nav{display:flex;align-items:center;gap:.25rem 1.4rem;flex-wrap:wrap}
+.site-nav a{color:var(--ink-2);text-decoration:none;font-weight:600;font-size:1rem;padding:.35rem 0;border-bottom:2px solid transparent}
+.site-nav a:hover{color:var(--ink);border-bottom-color:var(--rule-strong)}
+.site-nav a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--e)}
+.theme-toggle{appearance:none;border:1px solid var(--rule-strong);background:transparent;color:var(--ink);
+  width:2.5rem;height:2.5rem;border-radius:50%;display:inline-grid;place-items:center;cursor:pointer;padding:0}
+.theme-toggle:hover{background:var(--e-soft)}
+.theme-toggle svg{width:1.2rem;height:1.2rem}
+.theme-toggle .icon-moon{display:none}
+:root[data-theme="light"] .theme-toggle .icon-sun{display:none}
+:root[data-theme="light"] .theme-toggle .icon-moon{display:block}
+
+/* ---------- home shell: sidebar + content ---------- */
+.shell{max-width:78rem;margin:0 auto;padding:2.2rem 1.5rem 3rem;display:grid;grid-template-columns:15.5rem minmax(0,1fr);gap:3.25rem;align-items:start}
+.sidebar{position:sticky;top:1.5rem;font-size:.95rem}
+.avatar{width:11.5rem;height:11.5rem;border-radius:50%;object-fit:cover;background:var(--rule);border:1px solid var(--rule)}
+.sidebar-name{font-family:var(--serif);font-size:1.35rem;font-weight:700;margin:1rem 0 .3rem;border:0;padding:0}
+.sidebar-bio{color:var(--ink-2);margin:0 0 1rem;line-height:1.5}
+.contact-list{list-style:none;margin:0;padding:0}
+.contact-list li{display:flex;gap:.6rem;align-items:flex-start;margin:.42rem 0;line-height:1.35}
+.contact-list svg{flex:none;width:1.05rem;height:1.05rem;margin-top:.13rem;color:var(--ink-3)}
+.contact-list a{color:var(--ink);text-decoration-color:var(--rule-strong)}
+.contact-list a:hover{color:var(--link);text-decoration-color:currentColor}
+.content{max-width:var(--measure);min-width:0}
+.content > h1{margin-bottom:.4rem}
+.content > :first-child{margin-top:0}
+.lede{font-size:1.15rem;color:var(--ink-2);margin-top:.4rem}
+
+/* chips: research interests */
+.chips{list-style:none;padding:0;margin:1rem 0 0;display:flex;flex-wrap:wrap;gap:.5rem}
+.chips li{margin:0;padding:.28rem .8rem;border-radius:999px;background:var(--e-soft);color:var(--ink);font-size:.93rem;font-weight:600}
+
+/* news */
+.news{list-style:none;padding:0;margin:1.1rem 0 0}
+.news li{margin:0 0 1rem;padding:.1rem 0 .1rem 1rem;border-left:3px solid var(--e)}
+.news time{display:block;font-weight:700;color:var(--ink);font-size:.95rem}
+.news p{margin:.15rem 0 0}
+
+/* publications */
+.pubs{list-style:none;padding:0;margin:1.2rem 0 0}
+.pub{margin:0 0 1.15rem;padding:1rem 1.15rem;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--e);border-radius:6px}
+.pub-title{font-family:var(--serif);font-weight:700;font-size:1.13rem;line-height:1.3;margin:0}
+.pub-title a{color:var(--ink);text-decoration:none}
+.pub-title a:hover{color:var(--link);text-decoration:underline}
+.pub-authors{margin:.3rem 0 0;color:var(--ink-2);font-size:.95rem}
+.pub-authors .me{color:var(--ink);font-weight:700}
+.pub-venue{margin:.15rem 0 0;font-size:.95rem;color:var(--ink-2)}
+.pub-venue em{font-style:italic}
+.tag{display:inline-block;font-size:.82rem;font-weight:700;line-height:1;padding:.28rem .5rem;border-radius:4px;background:var(--e-soft);color:var(--ink);vertical-align:.08em;margin-left:.35rem;white-space:nowrap}
+.tag--new{background:var(--i-soft)}
+.pub-links{display:flex;flex-wrap:wrap;gap:.45rem;margin:.7rem 0 0;padding:0;list-style:none}
+.pub-links li{margin:0}
+.chip-link{display:inline-flex;align-items:center;gap:.35rem;font-size:.86rem;font-weight:700;padding:.3rem .65rem;border:1px solid var(--rule-strong);border-radius:5px;color:var(--ink);text-decoration:none;background:transparent;font-family:inherit;cursor:pointer;line-height:1.2}
+.chip-link:hover{border-color:var(--e);color:var(--link)}
+.chip-link--primary{background:var(--e-soft);border-color:transparent}
+details.bib{margin-top:.45rem}
+details.bib summary{list-style:none;display:inline-flex}
+details.bib summary::-webkit-details-marker{display:none}
+details.bib[open] summary{border-color:var(--e)}
+pre.bibtex{margin:.6rem 0 0;padding:.8rem 1rem;background:var(--code-bg);border-radius:6px;overflow-x:auto;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.5;color:var(--ink);border:1px solid var(--rule)}
+
+/* project cards */
+.cards{list-style:none;padding:0;margin:1.2rem 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:1.25rem}
+.card{margin:0;background:var(--surface);border:1px solid var(--rule);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.card:hover{border-color:var(--rule-strong)}
+.card-media{aspect-ratio:16/10;background:var(--plate);border-bottom:1px solid var(--rule);overflow:hidden}
+.card-media--paper{background:#FFFFFF}
+.card-media img{width:100%;height:100%;object-fit:cover}
+.card-media img.contain{object-fit:contain}
+.card-body{padding:.9rem 1rem 1.05rem;display:flex;flex-direction:column;gap:.35rem;flex:1}
+.card-title{font-family:var(--serif);font-size:1.13rem;font-weight:700;line-height:1.25;margin:0}
+.card-title a{color:var(--ink);text-decoration:none}
+.card-title a::after{content:"";position:absolute;inset:0}
+.card:hover .card-title a{color:var(--link)}
+.card-text{margin:0;color:var(--ink-2);font-size:.95rem;line-height:1.45}
+.card-meta{margin:auto 0 0;padding-top:.4rem;font-size:.86rem;font-weight:700;color:var(--ink-3)}
+.more{margin-top:1rem;font-weight:700}
+
+/* generic page (publications, projects index) */
+.page{max-width:60rem;margin:0 auto;padding:2.4rem 1.5rem 3rem}
+.page > h1 + p{color:var(--ink-2);font-size:1.1rem;max-width:var(--measure)}
+.page .pubs{max-width:50rem}
+
+/* ---------- footer ---------- */
+.site-footer{border-top:1px solid var(--rule);margin-top:2rem;background:var(--surface)}
+.site-footer-inner{max-width:78rem;margin:0 auto;padding:1.4rem 1.5rem 2rem;color:var(--ink-2);font-size:.92rem;display:flex;flex-wrap:wrap;gap:.4rem 2rem;justify-content:space-between}
+.site-footer a{color:var(--ink-2)}
+.site-footer p{margin:0}
+
+/* ---------- responsive ---------- */
+@media (max-width:56rem){
+  .shell{grid-template-columns:1fr;gap:1.5rem;padding-top:1.5rem}
+  .sidebar{position:static;display:grid;grid-template-columns:auto 1fr;gap:0 1.25rem;align-items:center}
+  .avatar{width:6.5rem;height:6.5rem}
+  .avatar{grid-row:1}
+  .sidebar-name{margin:0;align-self:center;font-size:1.5rem}
+  .sidebar-bio{grid-column:1 / -1;margin:.9rem 0 0}
+  .contact-list{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:.1rem 1.25rem;margin-top:.9rem}
+  .contact-list li{margin:.25rem 0}
+}
+@media (max-width:34rem){
+  body{font-size:1rem}
+  h1{font-size:1.8rem}
+  h2{font-size:1.35rem}
+  .masthead-inner{padding:.6rem 1rem}
+  .shell,.page{padding-left:1rem;padding-right:1rem}
+  .site-nav{gap:.25rem 1rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{.masthead,.site-footer,.theme-toggle{display:none}body{background:#fff;color:#000}}

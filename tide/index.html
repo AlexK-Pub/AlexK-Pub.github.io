@@ -1,0 +1,285 @@
+---
+layout: project
+project_class: project--tide
+math: true
+title: "TIDE: Asymmetric Neural Circuits for Stabilized Temporal Inhibitory-Excitatory Dynamics"
+short_title: "TIDE"
+description: >-
+  TIDE is a neuro-inspired recurrent architecture with excitatory and inhibitory populations:
+  Dale-constrained Wilson-Cowan dynamics, lateral inhibition and a surprise-gated memory, compared
+  against the Continuous Thought Machine. NeurIPS 2026.
+og_image: /assets/img/tide/og-tide.png
+venue: "NeurIPS 2026"
+authors:
+  - {name: "Alexander Kyuroson", url: "/", aff: "1"}
+  - {name: "Denis Kleyko", url: "https://oru.se/english/employee/denis_kleyko", aff: "2,3"}
+  - {name: "Marcus Liwicki", url: "https://www.ltu.se/en/staff/m/marcus-liwicki", aff: "1"}
+affiliations:
+  - {id: "1", name: "Luleå University of Technology"}
+  - {id: "2", name: "Örebro University"}
+  - {id: "3", name: "RISE Research Institutes of Sweden"}
+actions:
+  - {label: "Paper", icon: "paper", url: "https://arxiv.org/pdf/2605.19403"}
+  - {label: "arXiv", icon: "book", url: "https://arxiv.org/abs/2605.19403"}
+  - {label: "alphaXiv", icon: "chat", url: "https://www.alphaxiv.org/abs/2605.19403"}
+  - {label: "Poster", icon: "poster", url: "/assets/files/TIDE_NeurIPS2026_poster.pdf"}
+  - {label: "Code", icon: "code", soon: true}
+  - {label: "Cite", icon: "quote", url: "#citation"}
+sections:
+  - {id: "abstract", label: "Abstract"}
+  - {id: "demo", label: "Demo"}
+  - {id: "method", label: "Method"}
+  - {id: "results", label: "Results"}
+  - {id: "robustness", label: "Robustness"}
+  - {id: "limitations", label: "Limitations"}
+  - {id: "citation", label: "Citation"}
+---
+<div class="wide">
+  <figure>
+  <div class="swap" data-swap>
+    <div class="swap-controls" role="group" aria-label="Architecture shown">
+      <button type="button" data-show="tide" aria-pressed="true">TIDE</button>
+      <button type="button" data-show="ctm" aria-pressed="false">CTM</button>
+    </div>
+    <div class="swap-panel" data-panel="tide">
+      <p class="swap-label">TIDE</p>
+      <div class="plate plate--dense">
+        <a class="only-light" href="{{ '/assets/img/tide/tide-step-light.svg' | relative_url }}"><img src="{{ '/assets/img/tide/tide-step-light.svg' | relative_url }}" width="1800" height="1140" loading="lazy" decoding="async" alt="One internal step of TIDE: E-I synapse model, excitatory and inhibitory neuron-level models, rate update, lateral inhibition, three-stream synchronization, attention, output head and memory."></a>
+        <a class="only-dark" href="{{ '/assets/img/tide/tide-step-dark.svg' | relative_url }}"><img src="{{ '/assets/img/tide/tide-step-dark.svg' | relative_url }}" width="1800" height="1140" loading="lazy" decoding="async" alt="One internal step of TIDE: E-I synapse model, excitatory and inhibitory neuron-level models, rate update, lateral inhibition, three-stream synchronization, attention, output head and memory."></a>
+      </div>
+    </div>
+    <div class="swap-panel" data-panel="ctm">
+      <p class="swap-label">CTM</p>
+      <div class="plate plate--dense">
+        <a class="only-light" href="{{ '/assets/img/tide/ctm-step-light.svg' | relative_url }}"><img src="{{ '/assets/img/tide/ctm-step-light.svg' | relative_url }}" width="1800" height="1140" loading="lazy" decoding="async" alt="One internal step of the Continuous Thought Machine: a U-Net synapse model with weights of either sign, one shared neuron-level model, post-activations, synchronization over random neuron pairs, attention and output head. Lateral inhibition and memory are marked as absent."></a>
+        <a class="only-dark" href="{{ '/assets/img/tide/ctm-step-dark.svg' | relative_url }}"><img src="{{ '/assets/img/tide/ctm-step-dark.svg' | relative_url }}" width="1800" height="1140" loading="lazy" decoding="async" alt="One internal step of the Continuous Thought Machine: a U-Net synapse model with weights of either sign, one shared neuron-level model, post-activations, synchronization over random neuron pairs, attention and output head. Lateral inhibition and memory are marked as absent."></a>
+      </div>
+    </div>
+  </div>
+    <p class="scroll-hint">Scroll the figure sideways, or tap it to open it full size.</p>
+    <figcaption>One internal step of TIDE and of the Continuous Thought Machine (CTM), drawn on the same grid; switch between them to see what changes. Excitatory units are <span class="only-light">blue</span><span class="only-dark">yellow</span> and inhibitory units are red. Round markers 1 to 10 follow the numbering of CTM's own figure; square markers 11 to 13 are the blocks specific to TIDE: the HRF backbone, lateral inhibition and the memory. Dashed boxes in the CTM view mark the two blocks it does not have.</figcaption>
+  </figure>
+</div>
+
+<section class="section section--first" id="abstract" aria-labelledby="abstract-h">
+  <h2 id="abstract-h">Abstract</h2>
+  <p class="abstract">Recent Continuous Thought Machine (CTM) architecture decouples internal computation from external inputs via neural dynamics, but relies on unconstrained multi-layer perceptrons for its recurrent computations. We propose to model neural dynamics using asymmetric Excitatory-Inhibitory (E-I) networks, which can be stabilized via principles from network theory, while obeying Dale's principle and can be expressed as energy-based systems optimized through a game-theoretic loss. Building on this perspective, we introduce Temporal Inhibitory-Excitatory Dynamic Engine (TIDE), a neuro-inspired architecture that computes internal representations through neural dynamics stabilized by incorporating the Wilson-Cowan dynamics and lateral inhibition. TIDE balances biological realism by, for instance, using Hierarchical Receptive Fields and enforcing Dale's principle to ensure a realistic 80&#8239;:&#8239;20 E-I balance ratio with an end-to-end trainable architecture. The aim of this paper is to introduce a new architecture that brings neuro-inspired learning and architectural principles to the forefront. We present proofs of convergence, stability, and complexity bounds, along with empirical ablation studies. Overall, TIDE achieves higher top-1 accuracy than CTM on the majority of the investigated datasets while requiring a smaller training budget. Furthermore, across varying training budgets, TIDE improves top-1 accuracy on ImageNet-C by an average of +1.65% to +6.42% under different perturbation severity levels.</p>
+</section>
+
+<section class="section" id="demo" aria-labelledby="demo-h">
+  <h2 id="demo-h">Demo</h2>
+  <p>Each clip follows one ImageNet validation image through the 50 internal steps. The top row is TIDE and the bottom row is CTM. From left to right: the input, the mean attention, the attention overlaid on the image, and the five most likely classes with the certainty at that step. Press play to start a clip.</p>
+  {%- comment -%}
+    Clips from the NeurIPS supplementary material. To add a narrated demo later, put it at assets/video/tide/demo.mp4
+    and insert, above the grid:
+    <figure><div class="plate plate--photo"><video controls preload="metadata" src="{{ '/assets/video/tide/demo.mp4' | relative_url }}"></video></div></figure>
+  {%- endcomment -%}
+  <div class="wide">
+  <div class="fig-grid" style="--cols:2">
+    <figure>
+      <div class="plate plate--paper plate--video">
+        <video controls muted loop playsinline preload="none" width="1600" height="864" poster="{{ '/assets/img/tide/clip-iguana.webp' | relative_url }}" aria-label="Common iguana: attention and predictions of TIDE and CTM over 50 internal steps">
+          <source src="{{ '/assets/video/tide/iguana.mp4' | relative_url }}" type="video/mp4">
+          <a href="{{ '/assets/video/tide/iguana.mp4' | relative_url }}">Download the clip (Common iguana, MP4)</a>
+        </video>
+      </div>
+      <figcaption><strong>Common iguana.</strong> TIDE is correct at step 50, CTM is wrong.</figcaption>
+    </figure>
+    <figure>
+      <div class="plate plate--paper plate--video">
+        <video controls muted loop playsinline preload="none" width="1600" height="864" poster="{{ '/assets/img/tide/clip-elephant.webp' | relative_url }}" aria-label="African elephant: attention and predictions of TIDE and CTM over 50 internal steps">
+          <source src="{{ '/assets/video/tide/elephant.mp4' | relative_url }}" type="video/mp4">
+          <a href="{{ '/assets/video/tide/elephant.mp4' | relative_url }}">Download the clip (African elephant, MP4)</a>
+        </video>
+      </div>
+      <figcaption><strong>African elephant.</strong> TIDE is correct, CTM is wrong.</figcaption>
+    </figure>
+    <figure>
+      <div class="plate plate--paper plate--video">
+        <video controls muted loop playsinline preload="none" width="1600" height="864" poster="{{ '/assets/img/tide/clip-ram.webp' | relative_url }}" aria-label="Ram: attention and predictions of TIDE and CTM over 50 internal steps">
+          <source src="{{ '/assets/video/tide/ram.mp4' | relative_url }}" type="video/mp4">
+          <a href="{{ '/assets/video/tide/ram.mp4' | relative_url }}">Download the clip (Ram, MP4)</a>
+        </video>
+      </div>
+      <figcaption><strong>Ram.</strong> CTM is correct, TIDE is wrong.</figcaption>
+    </figure>
+    <figure>
+      <div class="plate plate--paper plate--video">
+        <video controls muted loop playsinline preload="none" width="1600" height="864" poster="{{ '/assets/img/tide/clip-stingray.webp' | relative_url }}" aria-label="Stingray: attention and predictions of TIDE and CTM over 50 internal steps">
+          <source src="{{ '/assets/video/tide/stingray.mp4' | relative_url }}" type="video/mp4">
+          <a href="{{ '/assets/video/tide/stingray.mp4' | relative_url }}">Download the clip (Stingray, MP4)</a>
+        </video>
+      </div>
+      <figcaption><strong>Stingray.</strong> CTM is correct, TIDE is wrong.</figcaption>
+    </figure>
+    <figure>
+      <div class="plate plate--paper plate--video">
+        <video controls muted loop playsinline preload="none" width="1600" height="864" poster="{{ '/assets/img/tide/clip-gallinule.webp' | relative_url }}" aria-label="European gallinule: attention and predictions of TIDE and CTM over 50 internal steps">
+          <source src="{{ '/assets/video/tide/gallinule.mp4' | relative_url }}" type="video/mp4">
+          <a href="{{ '/assets/video/tide/gallinule.mp4' | relative_url }}">Download the clip (European gallinule, MP4)</a>
+        </video>
+      </div>
+      <figcaption><strong>European gallinule.</strong> Both are correct.</figcaption>
+    </figure>
+    <figure>
+      <div class="plate plate--paper plate--video">
+        <video controls muted loop playsinline preload="none" width="1600" height="864" poster="{{ '/assets/img/tide/clip-chiffonier.webp' | relative_url }}" aria-label="Chiffonier: attention and predictions of TIDE and CTM over 50 internal steps">
+          <source src="{{ '/assets/video/tide/chiffonier.mp4' | relative_url }}" type="video/mp4">
+          <a href="{{ '/assets/video/tide/chiffonier.mp4' | relative_url }}">Download the clip (Chiffonier, MP4)</a>
+        </video>
+      </div>
+      <figcaption><strong>Chiffonier.</strong> Both are wrong.</figcaption>
+    </figure>
+  </div>
+  <p class="fig-note">Six of the twelve clips in the supplementary material, chosen to cover every outcome: two where only TIDE is correct at the last step, two where only CTM is, one where both are and one where neither is.</p>
+  </div>
+</section>
+
+<section class="section" id="method" aria-labelledby="method-h">
+  <h2 id="method-h">Method</h2>
+  <p>TIDE keeps the loop of the Continuous Thought Machine, a sequence of internal steps that is decoupled from the input, and changes what runs inside it. The neurons are split 80:20 into an excitatory and an inhibitory population. Every recurrent weight is non-negative, and whether a connection excites or inhibits is decided by the population it leaves, which is Dale's principle. The two populations follow a forward-Euler Wilson-Cowan update with their own time constants.</p>
+
+  <div class="eq-card" role="group" aria-label="Wilson-Cowan update of the excitatory and inhibitory rates">
+{% include tide-equations.html %}
+  </div>
+  <p class="table-note">Forward-Euler Wilson-Cowan update of the E-I rates. In TIDE, <span class="math">h</span> is normalized by RMSNorm. The minus sign in front of the inhibitory term is explicit because the weights themselves are never negative.</p>
+
+  <h3>From CTM to TIDE</h3>
+  <p>The figure at the top of the page shows both models on the same grid. The table lists the same changes block by block.</p>
+  <div class="wide">
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Block-by-block comparison of CTM and TIDE">
+      <table class="data">
+        <thead>
+          <tr><th scope="col">Block</th><th scope="col" class="l">CTM</th><th scope="col" class="l">TIDE</th><th scope="col" class="l">Change</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Feature extractor</th><td class="l wrap">ResNet backbone</td><td class="l wrap">Hierarchical receptive fields (HRF): learnable center-surround filters, trained end to end</td><td class="l"><span class="change">Replaced</span></td></tr>
+          <tr><th scope="row">Neuron interaction</th><td class="l wrap">Synapse model: U-Net MLP with weights of either sign</td><td class="l wrap">E-I populations under Dale's law; all four weight blocks are non-negative and inhibition enters with an explicit sign</td><td class="l"><span class="change">Replaced, split 80:20</span></td></tr>
+          <tr><th scope="row">Neuron-level models</th><td class="l wrap">A single set of per-neuron models on the pre-activation history</td><td class="l wrap">Two sets on the rate history, one per population: <span class="math">τ<sub>E</sub></span> = 20 ms and <span class="math">τ<sub>I</sub></span> = 5 ms</td><td class="l"><span class="change">Duplicated</span></td></tr>
+          <tr><th scope="row">Normalization</th><td class="l wrap">Shared LayerNorm</td><td class="l wrap">RMSNorm per population</td><td class="l"><span class="change">Modified</span></td></tr>
+          <tr><th scope="row">Synchronization</th><td class="l wrap">Single stream</td><td class="l wrap">Three streams: E-E (binding), E-I (gating), I-I (rhythm)</td><td class="l"><span class="change">Decomposed</span></td></tr>
+          <tr><th scope="row">Cross-attention</th><td class="l wrap">Query from synchronization</td><td class="l wrap">Adds a residual stream, <span class="math">a ← a + z</span>, on ImageNet-1K</td><td class="l"><span class="change change--add">Added, conditional</span></td></tr>
+          <tr><th scope="row">Lateral inhibition</th><td class="l wrap">Absent</td><td class="l wrap">Winner-take-all on the excitatory population, five iterations</td><td class="l"><span class="change change--add">Added</span></td></tr>
+          <tr><th scope="row">Memory</th><td class="l wrap">Absent</td><td class="l wrap">Surprise-gated persistent buffer with momentum; an E-I retention gate weakens writes when the E/I activity ratio is high</td><td class="l"><span class="change change--add">Added</span></td></tr>
+          <tr><th scope="row">Output head</th><td class="l wrap">Reads the synchronization vector</td><td class="l wrap">Reads the latent and the memory, <span class="math">[z; m]</span></td><td class="l"><span class="change">Extended</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">What changes block by block, after Figure 1 of the paper.</p>
+  </div>
+
+  <h3>Training and stability</h3>
+  <dl class="deflist">
+    <dt>Training under Dale's principle</dt>
+    <dd>Projected gradient descent: after every optimizer step the recurrent weights are clamped to <span class="math">W</span> ≥ 0.</dd>
+    <dt>Game-theoretic loss</dt>
+    <dd>The E-I circuit is read as a game between neurons, and the loss penalizes the fixed-point residual of the per-neuron energies (Betteti et al., 2025).</dd>
+    <dt>Stability</dt>
+    <dd>Lyapunov diagonal stability is monitored during training through a differentiable Perron sum-ratio surrogate that caps <span class="math">ρ(W<sub>EE</sub>)</span> and <span class="math">ρ(W<sub>II</sub>)</span>.</dd>
+  </dl>
+</section>
+
+<section class="section" id="results" aria-labelledby="results-h">
+  <h2 id="results-h">Results</h2>
+  <p>TIDE and CTM are trained with the same seeds and the same number of optimizer steps on five image-classification datasets. CTM is retrained for this comparison.</p>
+
+  <div class="wide">
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Main benchmark: TIDE and CTM at equal training budgets">
+      <table class="data">
+        <thead>
+          <tr>
+            <th scope="col" rowspan="2">Dataset</th><th scope="col" rowspan="2">Steps</th><th scope="col" rowspan="2"><span class="math">d</span><sub>model</sub></th>
+            <th scope="colgroup" colspan="2" class="c tide-col">TIDE</th><th scope="colgroup" colspan="2" class="c">CTM</th>
+          </tr>
+          <tr><th scope="col" class="tide-col">mean ± std</th><th scope="col" class="tide-col">best seed</th><th scope="col">mean ± std</th><th scope="col">best seed</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">MNIST</th><td>50K</td><td>256</td><td class="tide-col best">99.64 <span class="sd">± 0.03</span></td><td class="tide-col best">99.67</td><td>99.54 <span class="sd">± 0.03</span></td><td>99.56</td></tr>
+          <tr><th scope="row">MNIST</th><td>200K</td><td>256</td><td class="tide-col best">99.60 <span class="sd">± 0.05</span></td><td class="tide-col best">99.64</td><td>99.59 <span class="sd">± 0.06</span></td><td class="best">99.64</td></tr>
+          <tr><th scope="row">Fashion-MNIST</th><td>50K</td><td>256</td><td class="tide-col best">94.21 <span class="sd">± 0.21</span></td><td class="tide-col best">94.42</td><td>92.51 <span class="sd">± 0.11</span></td><td>92.63</td></tr>
+          <tr><th scope="row">Fashion-MNIST</th><td>200K</td><td>256</td><td class="tide-col best">94.12 <span class="sd">± 0.19</span></td><td class="tide-col best">94.23</td><td>92.53 <span class="sd">± 0.24</span></td><td>92.80</td></tr>
+          <tr><th scope="row">CIFAR-10</th><td>600K</td><td>512</td><td class="tide-col best">90.62 <span class="sd">± 0.06</span></td><td class="tide-col best">90.68</td><td>86.23 <span class="sd">± 0.34</span></td><td>86.59</td></tr>
+          <tr><th scope="row">CIFAR-100</th><td>600K</td><td>718</td><td class="tide-col">62.23 <span class="sd">± 0.16</span></td><td class="tide-col">62.38</td><td rowspan="2">65.19 <span class="sd">± 0.48</span></td><td rowspan="2">65.70</td></tr>
+          <tr><th scope="row">CIFAR-100</th><td>600K<sup>‡</sup></td><td>718</td><td class="tide-col best">65.68 <span class="sd">± 0.18</span></td><td class="tide-col best">65.79</td></tr>
+          <tr><th scope="row">ImageNet-1K</th><td>100K</td><td>4096</td><td class="tide-col best">67.22 <span class="sd">± 1.52</span></td><td class="tide-col best">68.74</td><td>52.67 <span class="sd">± 1.79</span></td><td>54.46</td></tr>
+          <tr><th scope="row">ImageNet-1K</th><td>200K</td><td>4096</td><td class="tide-col best">68.40 <span class="sd">± 1.91</span></td><td class="tide-col best">69.55</td><td>62.78 <span class="sd">± 1.31</span></td><td>64.06</td></tr>
+          <tr><th scope="row">ImageNet-1K</th><td>500K</td><td>4096</td><td class="tide-col">n/a</td><td class="tide-col">69.90</td><td>n/a</td><td class="best">71.78</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Best top-1 accuracy (%) during training, as mean ± standard deviation over seeds and for the best seed (Table 1 of the paper). Bold marks the highest value per dataset and step budget, separately for the mean and for the best seed. <sup>‡</sup> Effective batch size of 64. At 500K steps on ImageNet-1K only one run per model is reported, and CTM attains the higher accuracy.</p>
+  </div>
+
+  <h3>Component ablation</h3>
+  <p>Each row removes one component from the full model, or adds the spectral regularizer, and retrains with the same seeds. MNIST and Fashion-MNIST use 50K steps, CIFAR-10 and CIFAR-100 use 600K.</p>
+  <div class="wide">
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Leave-one-out ablation on four datasets">
+      <table class="data">
+        <thead>
+          <tr><th scope="col">Configuration</th><th scope="col">MNIST</th><th scope="col">Fashion-MNIST</th><th scope="col">CIFAR-10</th><th scope="col">CIFAR-100</th></tr>
+        </thead>
+        <tbody>
+          <tr class="group"><th scope="rowgroup" colspan="5">Reference</th></tr>
+          <tr><th scope="row">CTM</th><td>99.54 <span class="sd">± 0.03</span></td><td>92.51 <span class="sd">± 0.11</span></td><td>86.23 <span class="sd">± 0.34</span></td><td>65.19 <span class="sd">± 0.48</span></td></tr>
+          <tr><th scope="row">TIDE, full (<span class="math">λ</span><sub>spec</sub> = 0)</th><td class="best">99.64 <span class="sd">± 0.02</span></td><td>94.21 <span class="sd">± 0.21</span></td><td class="best">90.62 <span class="sd">± 0.06</span></td><td class="best">65.68 <span class="sd">± 0.18</span></td></tr>
+          <tr class="group"><th scope="rowgroup" colspan="5">Component removed</th></tr>
+          <tr><th scope="row">Wilson-Cowan update</th><td>99.61 <span class="sd">± 0.02</span></td><td>93.70 <span class="sd">± 0.12</span></td><td>90.18 <span class="sd">± 0.26</span></td><td>64.52 <span class="sd">± 0.67</span></td></tr>
+          <tr><th scope="row">Dale's law constraint</th><td>99.59 <span class="sd">± 0.03</span></td><td>93.55 <span class="sd">± 0.18</span></td><td>89.01 <span class="sd">± 1.74</span></td><td>65.39 <span class="sd">± 0.39</span></td></tr>
+          <tr><th scope="row">Lateral inhibition (WTA)</th><td>99.61 <span class="sd">± 0.02</span></td><td>93.80 <span class="sd">± 0.17</span></td><td>89.13 <span class="sd">± 1.20</span></td><td>64.94 <span class="sd">± 0.30</span></td></tr>
+          <tr><th scope="row">Surprise-gated memory</th><td>99.59 <span class="sd">± 0.01</span></td><td>92.95 <span class="sd">± 0.16</span></td><td>88.97 <span class="sd">± 1.41</span></td><td>64.32 <span class="sd">± 0.30</span></td></tr>
+          <tr><th scope="row">HRF backbone (ResNet-18 instead)</th><td>99.60 <span class="sd">± 0.03</span></td><td>93.03 <span class="sd">± 0.12</span></td><td>83.02 <span class="sd">± 2.02</span></td><td>54.49 <span class="sd">± 0.76</span></td></tr>
+          <tr class="group"><th scope="rowgroup" colspan="5">Component added</th></tr>
+          <tr><th scope="row">Spectral regularizer (<span class="math">λ</span><sub>spec</sub> = 0.1)</th><td class="best">99.64 <span class="sd">± 0.03</span></td><td class="best">94.31 <span class="sd">± 0.06</span></td><td>89.02 <span class="sd">± 2.93</span></td><td>65.38 <span class="sd">± 0.35</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">Leave-one-out ablation: best top-1 accuracy (%) during training, mean ± standard deviation over seeds (Table 3 of the paper). Bold marks the highest value per dataset. Removing the memory costs the most on MNIST and Fashion-MNIST; swapping the HRF backbone for ResNet-18 costs the most on CIFAR-10 and CIFAR-100.</p>
+  </div>
+
+  <h3>Attention over internal steps</h3>
+  <div class="wide">
+    {%- capture cap -%}
+    Attention of TIDE and CTM over internal steps on perturbed ImageNet images. The frame and the label under each tile give the prediction at that step: green is correct, red is wrong.
+    {%- endcapture -%}
+    {% include figure.html plate="dense" light="/assets/img/tide/attention-light.webp" dark="/assets/img/tide/attention-dark.webp" w="2200" h="1204" alt="Two examples, a little blue heron with Gaussian noise and a coyote rotated by 90 degrees. For each, rows of attention maps at internal steps 1, 5, 10, 20, 30, 40 and 50 for TIDE and for CTM. TIDE predicts the correct class from step 5 onward in both examples; CTM is wrong at every step shown." caption=cap %}
+  </div>
+</section>
+
+<section class="section" id="robustness" aria-labelledby="robustness-h">
+  <h2 id="robustness-h">Robustness</h2>
+  <p>Both models are trained on clean ImageNet-1K only and then evaluated on ImageNet-C, which applies 19 corruption types at five severities. At 500K training steps TIDE is ahead of CTM by 2.68 points on average over all 95 cells. With smaller training budgets the gap is wider: 16.8 points at 100K steps and 6.4 points at 200K. CTM is the more robust of the two under fog, frost and snow.</p>
+  <div class="wide">
+    {%- capture cap -%}
+    ImageNet-C top-1 accuracy (%) at 500K training steps. Left: TIDE. Center: CTM. Right: the difference TIDE − CTM, where blue means TIDE is higher (Figure 3 of the paper).
+    {%- endcapture -%}
+    {% include figure.html plate="dense" light="/assets/img/tide/imagenet-c-light.webp" dark="/assets/img/tide/imagenet-c-dark.webp" w="2400" h="1151" alt="Three heatmaps over 19 corruption types and 5 severities on ImageNet-C: TIDE accuracy, CTM accuracy and their difference. TIDE is higher for most blur, digital and noise corruptions, by up to 14.1 points for elastic transform; CTM is higher for fog at every severity, by up to 5.2 points." caption=cap %}
+  </div>
+  <p>On CIFAR-10-C the results are mixed. TIDE leads under noise and under snow and frost, while CTM is clearly better at high severity under contrast, fog and defocus blur.</p>
+  <div class="wide">
+    {%- capture cap -%}
+    CIFAR-10-C top-1 accuracy (%) of TIDE, of CTM and their difference TIDE − CTM, where blue means TIDE is higher. This panel is from the conference poster.
+    {%- endcapture -%}
+    {% include figure.html plate="dense" light="/assets/img/tide/cifar10-c-light.webp" dark="/assets/img/tide/cifar10-c-dark.webp" w="2400" h="932" alt="Three heatmaps over 15 corruption types and 5 severities on CIFAR-10-C: TIDE accuracy, CTM accuracy and their difference. TIDE is higher by about 7 to 10 points under Gaussian, shot and impulse noise; CTM is higher by up to 40.3 points under contrast at severity 5 and by 17.9 points under fog at severity 5." caption=cap %}
+  </div>
+</section>
+
+<section class="section" id="limitations" aria-labelledby="limitations-h">
+  <h2 id="limitations-h">Limitations</h2>
+  <p>The main limitation of both TIDE and CTM is their required sequential feedforward data processing, which prohibits shorter runtime and prevents more robust investigation. Therefore, further investigation is required to assess the feasibility of leveraging neuromorphic hardware and its dynamics, not only to enhance data preprocessing but also to implement a Look-up-Table-based approach to further reduce the training duration of the proposed framework. Given that we have already lowered the training boundary by around 50% to achieve results comparable to CTM, indicating the soundness of our approach, further studies are still needed to assess the reachability of an even sparser representation. Additionally, due to the lack of comparable implementations using similar approaches, detailed benchmarking within the same architectural family remains limited and challenging. Although CTM uses LSTM as its baseline, it is not a direct comparison; however, their results can be directly translated to TIDE given that we use CTM as our baseline.</p>
+  <p class="table-note">The limitations paragraph of Appendix H of the paper, word for word.</p>
+</section>
+
+<section class="section" id="citation" aria-labelledby="citation-h">
+  <h2 id="citation-h">Citation</h2>
+  <div class="cite-box">
+    <div class="cite-head"><span>BibTeX</span><button class="chip-link" type="button" data-copy="tide-bibtex">Copy</button></div>
+<pre class="bibtex" tabindex="0"><code id="tide-bibtex">{% raw %}@inproceedings{
+anonymous2026tide,
+title={{TIDE}: Asymmetric Neural Circuits for Stabilized Temporal Inhibitory-Excitatory Dynamics},
+author={Anonymous},
+booktitle={The Fortieth Annual Conference on Neural Information Processing Systems},
+year={2026},
+url={https://openreview.net/forum?id=dwcrK8NHpm}
+}{% endraw %}</code></pre>
+  </div>
+</section>

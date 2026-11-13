@@ -1,0 +1,28 @@
+{%- comment -%}
+  A figure on a plate. Give `src` for an image that works on both themes, or `light` + `dark` for a theme pair.
+  plate: "paper" keeps a white plate on both themes (plots drawn for white paper); "photo" removes the padding;
+         "dense" is for figures with small labels: on phones they scroll sideways instead of shrinking.
+  dense="1": the same sideways scrolling on phones, for a figure that also needs plate="paper" or the default plate.
+  w, h: the pixel size of the image. Inside a .fig-row they set the width each figure gets, so that all plates
+        in the row have one height.
+  stage: for a single figure that is much narrower than the page. The plate spans the full row with this
+         width-to-height ratio (for example stage="3") and the image is centered in it.
+  Usage: {% include figure.html light="/assets/img/x-light.webp" dark="/assets/img/x-dark.webp" w="1200" h="800" alt="..." caption=cap %}
+{%- endcomment -%}
+{%- if include.w and include.h -%}{%- assign ar = include.w | times: 1.0 | divided_by: include.h | round: 4 -%}{%- else -%}{%- assign ar = nil -%}{%- endif -%}
+<figure{% if include.class or include.stage %} class="{{ include.class }}{% if include.stage %} fig--stage{% endif %}"{% endif %}{% if ar %} style="--ar:{{ ar }}{% if include.stage %};--stage:{{ include.stage }}{% endif %}"{% endif %}>
+  <div class="plate{% if include.plate %} plate--{{ include.plate }}{% endif %}{% if include.dense %} plate--dense{% endif %}">
+    {%- if include.light %}
+    <a class="only-light" href="{{ include.light | relative_url }}"><img src="{{ include.light | relative_url }}" alt="{{ include.alt | escape }}" loading="lazy" decoding="async"{% if include.w %} width="{{ include.w }}" height="{{ include.h }}"{% endif %}></a>
+    <a class="only-dark" href="{{ include.dark | relative_url }}"><img src="{{ include.dark | relative_url }}" alt="{{ include.alt | escape }}" loading="lazy" decoding="async"{% if include.w %} width="{{ include.w }}" height="{{ include.h }}"{% endif %}></a>
+    {%- else %}
+    <a href="{{ include.src | relative_url }}"><img src="{{ include.src | relative_url }}" alt="{{ include.alt | escape }}" loading="lazy" decoding="async"{% if include.w %} width="{{ include.w }}" height="{{ include.h }}"{% endif %}></a>
+    {%- endif %}
+  </div>
+  {%- if include.plate == "dense" or include.dense %}
+  <p class="scroll-hint">Scroll the figure sideways, or tap it to open it full size.</p>
+  {%- endif %}
+  {%- if include.caption %}
+  <figcaption>{{ include.caption }}</figcaption>
+  {%- endif %}
+</figure>

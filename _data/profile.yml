@@ -1,0 +1,42 @@
+# Everything shown in the sidebar and the footer. Edit here; the pages pick it up.
+name: Alexander Kyuroson
+short_bio: >-
+  I work on neuro-inspired architectures and on the stability and robustness of
+  excitatory-inhibitory networks.
+location: Luleå, Sweden
+affiliation: Machine Learning group, Luleå University of Technology
+affiliation_url: https://www.ltu.se/en/research/research-subjects/machine-learning
+# The e-mail address is split so that it is not harvested as plain text.
+email_user: akyuroson
+email_domain: gmail.com
+links:
+  - label: Google Scholar
+    icon: scholar
+    url: https://scholar.google.com/citations?user=43Vx7K0AAAAJ
+  - label: ORCID
+    icon: id
+    url: https://orcid.org/0009-0007-4859-9955
+  - label: Semantic Scholar
+    icon: book
+    url: https://www.semanticscholar.org/author/Alexander-Kyuroson/2215797596
+  - label: alphaXiv
+    icon: paper
+    url: https://www.alphaxiv.org/@alexander-kyuroson
+  - label: GitHub
+    icon: code
+    url: https://github.com/AlexK-Pub
+  - label: ResearchGate
+    icon: flask
+    url: https://www.researchgate.net/profile/Alexander-Kyuroson
+  # LinkedIn: add your profile URL and uncomment.
+  # - label: LinkedIn
+  #   icon: person
+  #   url: https://www.linkedin.com/in/<your-handle>/
+interests:
+  - Representation learning
+  - Statistical learning
+  - Robotics
+  - Multi-agent systems
+  - Neuroscience
+  - Neuromorphic computing
+  - Machine learning

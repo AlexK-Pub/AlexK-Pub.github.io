@@ -1,0 +1,49 @@
+# Cards on the home page and on /projects/. `image` and `image_dark` are a light/dark pair;
+# leave `image_dark` out for photos that work on both themes.
+- title: "TIDE"
+  subtitle: "Asymmetric neural circuits for stabilized temporal inhibitory-excitatory dynamics"
+  url: /tide/
+  image: /assets/img/tide/tide-step-light.svg
+  image_dark: /assets/img/tide/tide-step-dark.svg
+  fit: contain
+  alt: "Schematic of one internal step of the TIDE architecture."
+  text: >-
+    A recurrent architecture built from excitatory and inhibitory populations: Dale-constrained
+    Wilson-Cowan dynamics, lateral inhibition, and a surprise-gated memory, compared against the
+    Continuous Thought Machine.
+  meta: "NeurIPS 2026"
+- title: "Autonomous orbit management"
+  url: /orbit-management/
+  image: /assets/img/orbit/trajectory-correction.webp
+  image_dark: /assets/img/orbit/trajectory-correction-dark.webp
+  fit: contain
+  alt: "3D plot of a satellite orbit with the reference and two learned trajectories overlapping."
+  text: >-
+    Station-keeping for low-thrust satellites in low-earth orbit, learned with deep reinforcement
+    learning and with neuro-evolution in the same environment.
+  meta: "European Journal of Control 2024"
+
+- title: "Power-line segmentation from LiDAR"
+  url: /powerline-segmentation/
+  image: /assets/img/powerline/inspection-flight.webp
+  alt: "A drone flying along power lines above a snowy forest."
+  text: >-
+    An unsupervised pipeline that extracts individual power lines and the vegetation around them
+    from a drone's LiDAR point cloud alone.
+  meta: "IFAC World Congress 2023"
+- title: "Smoke filtration for 3D LiDAR"
+  url: /smoke-filtration/
+  image: /assets/img/smoke/tunnel-1.webp
+  alt: "Dust swirling in an underground tunnel, seen from a robot's camera."
+  text: >-
+    A real-time filter that removes smoke and dust returns from point clouds before they reach
+    mapping and collision avoidance.
+  meta: "IECON 2023"
+- title: "Subterranean multimodal dataset"
+  url: /subt-dataset/
+  image: /assets/img/subt/tunnel-clear.webp
+  alt: "An underground rock tunnel lit by ceiling lamps, without vapor."
+  text: >-
+    Synchronized LiDAR, mmWave radar, and infrared RGB-D recordings from an underground tunnel
+    filled with dense vapor.
+  meta: "MED 2023"

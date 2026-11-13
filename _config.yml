@@ -1,0 +1,19 @@
+# Site settings. After editing this file, restart `jekyll serve` (it is read once at start-up).
+title: Alexander Kyuroson
+description: >-
+  Alexander Kyuroson, Luleå University of Technology. Neuro-inspired machine learning,
+  excitatory-inhibitory neural dynamics, and robust perception for field robots.
+url: "https://alexk-pub.github.io"   # the user site of the GitHub account AlexK-Pub
+baseurl: ""                          # stays empty for a <user>.github.io repository
+lang: en
+permalink: pretty
+markdown: kramdown
+theme: null                          # this site ships its own layouts; do not load GitHub's default theme
+plugins:
+  - jekyll-sitemap
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - tools
+  - vendor
